@@ -44,6 +44,10 @@ export class Level3 extends Scene {
     this.add.text(3250, 40, 'Boss Health', { fontSize: '20px', fill: '#ffffff' })
   }
 
+  changeScene() {
+    this.scene.start('level-4-scene')
+  }
+
   initMap () {
     // creating tilemap
     const level3map = this.make.tilemap({ key: 'level3-map' })
