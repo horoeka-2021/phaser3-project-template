@@ -247,9 +247,6 @@ export class Level1 extends Scene {
   update () {
     this.jared.update()
 
-    this.enemy.update()
-    this.enemy4.update()
-
     this.enemy3.update()
     this.enemy1.update()
     this.enemy2.update()
