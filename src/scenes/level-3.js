@@ -21,7 +21,6 @@ export class Level3 extends Scene {
     this.pathSetup()
     this.enemySetup()
     this.cameraSetup()
-    this.debugSetup()
 
     // change position if needed (but use same position for both images)
     var backgroundBar = this.add.image(150, 50, 'green-bar')
@@ -185,8 +184,6 @@ export class Level3 extends Scene {
   }
 
   update () {
-    this.debugUpdate()
-
     if (this.player.hp > 0) {
       this.player.update()
     } else if (this.player.active) {
