@@ -44,7 +44,7 @@ export class Level3 extends Scene {
     this.add.text(3250, 40, 'Boss Health', { fontSize: '20px', fill: '#ffffff' })
   }
 
-  changeScene() {
+  changeScene () {
     this.scene.start('level-4-scene')
   }
 
