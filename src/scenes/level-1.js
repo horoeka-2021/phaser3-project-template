@@ -20,16 +20,11 @@ export class Level1 extends Scene {
     this.uISetup()
     this.cameraSetup()
 
-    // change position if needed (but use same position for both images)
-    var backgroundBar = this.add.image(150, 50, 'green-bar')
-    backgroundBar.setScrollFactor(0)
-
-    this.playerHealthBar = this.add.image(155, 50, 'red-bar')
-    this.playerHealthBar.setScrollFactor(0)
-
-    // add text label to left of bar
-    this.healthLabel = this.add.text(40, 40, 'Health', { fontSize: '20px', fill: '#ffffff' })
-    this.healthLabel.setScrollFactor(0)
+    this.sound.stopAll()
+    this.sound.add('stepsAudio')
+    this.sound.add('playerFireAudio')
+    this.sound.add('level1BgAudio')
+    this.sound.play('level1BgAudio', { volume: 0.7, loop: true })
   }
 
   changeScene () {
@@ -152,7 +147,7 @@ export class Level1 extends Scene {
   }
 
   triggerSetup () {
-    this.endLevel = new Trigger(this, 3745, 448)
+    this.endLevel = new Trigger(this, 3740, 490)
     this.bossHealth = new BossHpTrigger(this, 2520, 460, { healthBarX: 3450, healthBarY: 34 })
   }
 
