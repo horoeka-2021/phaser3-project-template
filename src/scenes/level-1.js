@@ -1,10 +1,9 @@
 import { Scene, Curves, Display } from 'phaser'
-import { Mob } from '../classes/enemies/mob'
 import { Player } from '../classes/player'
 import { Patroller } from '../classes/enemies/patroller'
-import { Boss1 } from '../classes/bosses/boss'
-import { Trigger } from '../classes/triggers'
-import { BossHpTrigger } from '../classes/bossHpTrigger'
+import { Boss1 } from '../classes/bosses/boss1'
+import { Trigger } from '../classes/triggers/endLevel'
+import { BossHpTrigger } from '../classes/triggers/bossHpTrigger'
 import { Facilitator } from '../classes/npc'
 export class Level1 extends Scene {
   constructor () {
@@ -14,9 +13,11 @@ export class Level1 extends Scene {
   create () {
     this.initMap()
     this.initPlayer()
+    this.initNpc()
     this.pathSetup()
     this.enemySetup()
     this.triggerSetup()
+    this.uISetup()
     this.cameraSetup()
 
     // change position if needed (but use same position for both images)
@@ -67,6 +68,9 @@ export class Level1 extends Scene {
 
   initPlayer () {
     this.player = new Player(this, 100, 300)
+  }
+
+  initNpc () {
     this.jared = new Facilitator(this, 3000, 200, 'jared')
   }
 
@@ -85,42 +89,43 @@ export class Level1 extends Scene {
   }
 
   enemySetup () {
-    const mobConfig = {
-      w: 30,
-      h: 30,
-      xOff: 50,
-      yOff: 8,
-      scale: 2,
-      frameEnds: {
-        idle: 4
-      }
-    }
+    // const mobConfig = {
+    //   w: 30,
+    //   h: 30,
+    //   xOff: 50,
+    //   yOff: 8,
+    //   scale: 2,
+    //   frameEnds: {
+    //     idle: 4
+    //   }
+    // }
 
-    const vikingConfig = {
-      w: 24,
-      h: 24,
-      xOff: 5,
-      yOff: 8,
-      scale: 1,
-      frameEnds: {
-        idle: 6
-      }
-    }
+    // const vikingConfig = {
+    //   w: 24,
+    //   h: 24,
+    //   xOff: 5,
+    //   yOff: 8,
+    //   scale: 1,
+    //   frameEnds: {
+    //     idle: 6
+    //   }
+    // }
 
-    // tempConfig for gen-mob-2
-    const tempConfig = {
-      w: 24,
-      h: 24,
-      xOff: 5,
-      yOff: 8,
-      scale: 1,
-      frameEnds: {
-        idle: 6
-      }
-    }
+    // // tempConfig for bear-boss
+    // const tempConfig = {
+    //   w: 128,
+    //   h: 128,
+    //   xOff: 0,
+    //   yOff: 0,
+    //   scale: 1,
+    //   frameEnds: {
+    //     run: 3
+    //   }
+    // }
 
-    this.enemy = new Mob(this, 500, 400, 'viking', vikingConfig)
-    this.enemy4 = new Mob(this, 500, 200, 'gen-mob-1', mobConfig)
+    // this.enemy = new Mob(this, 500, 400, 'viking', vikingConfig)
+    // this.bossChild = new Mob(this, 500, 300, 'bear-boss', tempConfig)
+    // this.enemy4 = new Mob(this, 500, 200, 'gen-mob-1', mobConfig)
     this.enemy1 = new Patroller(this, this.curve, 818, 413, 'adventurer')
     this.enemy2 = new Patroller(this, this.curve, 1712, 412, 'adventurer')
     this.enemy3 = new Patroller(this, this.flying, 1535, 392, 'adventurer')
@@ -149,6 +154,19 @@ export class Level1 extends Scene {
   triggerSetup () {
     this.endLevel = new Trigger(this, 3745, 448)
     this.bossHealth = new BossHpTrigger(this, 2520, 460, { healthBarX: 3450, healthBarY: 34 })
+  }
+
+  uISetup () {
+    // change position if needed (but use same position for both images)
+    var backgroundBar = this.add.image(150, 50, 'green-bar')
+    backgroundBar.setScrollFactor(0)
+
+    this.playerHealthBar = this.add.image(155, 50, 'red-bar')
+    this.playerHealthBar.setScrollFactor(0)
+
+    // add text label to left of bar
+    this.healthLabel = this.add.text(40, 40, 'Health', { fontSize: '20px', fill: '#ffffff' })
+    this.healthLabel.setScrollFactor(0)
   }
 
   debugSetup () {
@@ -243,6 +261,11 @@ export class Level1 extends Scene {
       this.boss.update()
     } else if (this.boss.active) {
       this.boss.die()
+      this.jared.setVisible(true)
+      this.jared.setActive(true)
+      if (this.jared.active) {
+        this.jared.update()
+      }
     }
 
     if (this.player.hp > 0) {

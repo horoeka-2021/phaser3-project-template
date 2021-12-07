@@ -1,6 +1,7 @@
 import { Scene, Curves, Display } from 'phaser'
+import { Boss4 } from '../classes/bosses/boss4'
 import { Player } from '../classes/player'
-import { Trigger } from '../classes/triggers'
+import { Trigger } from '../classes/triggers/endLevel'
 
 export class Level45 extends Scene {
   constructor () {
@@ -13,6 +14,8 @@ export class Level45 extends Scene {
     this.pathSetup()
     this.enemySetup()
     this.triggerSetup()
+    this.uISetup()
+    this.cameraSetup()
 
     // change position if needed (but use same position for both images)
     var backgroundBar = this.add.image(150, 50, 'green-bar')
@@ -65,7 +68,8 @@ export class Level45 extends Scene {
   }
 
   enemySetup () {
-
+    // boss locaiton 310, 420
+    this.boss = new Boss4(this, 310, 420)
   }
 
   triggerSetup () {
@@ -120,6 +124,19 @@ export class Level45 extends Scene {
     this.scene5 = this.input.keyboard.addKey('FIVE')
   }
 
+  uISetup () {
+    // change position if needed (but use same position for both images)
+    var backgroundBar = this.add.image(150, 50, 'green-bar')
+    backgroundBar.setScrollFactor(0)
+
+    this.playerHealthBar = this.add.image(155, 50, 'red-bar')
+    this.playerHealthBar.setScrollFactor(0)
+
+    // add text label to left of bar
+    this.healthLabel = this.add.text(40, 40, 'Health', { fontSize: '20px', fill: '#ffffff' })
+    this.healthLabel.setScrollFactor(0)
+  }
+
   debugUpdate () {
     this.mouseCoords.setText('X: ' + this.input.activePointer.worldX + ' Y: ' + this.input.activePointer.worldY)
     this.mouseCoords.x = this.player.x
@@ -160,6 +177,11 @@ export class Level45 extends Scene {
     } else if (this.player.active) {
       this.player.die()
       this.scene.start('death-scene', { checkpoint: 4 })
+    }
+    if (this.boss.hp > 0) {
+      this.boss.update()
+    } else if (this.boss.active) {
+      this.boss.die()
     }
   }
 }

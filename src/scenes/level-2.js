@@ -2,11 +2,9 @@ import { Scene, Curves, Display } from 'phaser'
 import { Mob } from '../classes/enemies/mob'
 import { Player } from '../classes/player'
 import { Patroller } from '../classes/enemies/patroller'
-import { BossHpTrigger } from '../classes/bossHpTrigger'
-import { MobSpawner } from '../classes/groups/mob-spawner'
+import { BossHpTrigger } from '../classes/triggers/bossHpTrigger'
 import { Boss2 } from '../classes/bosses/boss2'
-// import { Boss1 } from '../classes/bosses/boss'
-import { Trigger } from '../classes/triggers'
+import { Trigger } from '../classes/triggers/endLevel'
 
 export class Level2 extends Scene {
   constructor () {
@@ -19,6 +17,7 @@ export class Level2 extends Scene {
     this.pathSetup()
     this.enemySetup()
     this.triggerSetup()
+    this.uISetup()
     this.cameraSetup()
 
     // change position if needed (but use same position for both images)
@@ -131,7 +130,23 @@ export class Level2 extends Scene {
     })
   }
 
+  uISetup () {
+    // change position if needed (but use same position for both images)
+    var backgroundBar = this.add.image(150, 50, 'green-bar')
+    backgroundBar.setScrollFactor(0)
+
+    this.playerHealthBar = this.add.image(155, 50, 'red-bar')
+    this.playerHealthBar.setScrollFactor(0)
+
+    // add text label to left of bar
+    this.healthLabel = this.add.text(40, 40, 'Health', { fontSize: '20px', fill: '#ffffff' })
+    this.healthLabel.setScrollFactor(0)
+  }
+
   debugSetup () {
+    this.input.on('pointerdown', () => {
+      this.player.godMode = !this.player.godMode
+    })
     const debugGraphics = this.add.graphics().setAlpha(0.7)
     this.jumpLayer.renderDebug(debugGraphics, {
       tileColor: null,
