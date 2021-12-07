@@ -28,7 +28,7 @@ export class Level1 extends Scene {
   }
 
   changeScene () {
-    this.scene.start('level-2-scene')
+    this.scene.start('loading-scene', { scene: 'level-2-scene' })
   }
 
   initMap () {

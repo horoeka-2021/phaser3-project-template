@@ -26,7 +26,7 @@ export class Level5 extends Scene {
   }
 
   changeScene () {
-    this.scene.start('win-scene')
+    this.scene.start('loading-scene', { scene: 'win-scene' })
   }
 
   initMap () {

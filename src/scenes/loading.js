@@ -5,6 +5,10 @@ export class LoadingScene extends Scene {
     super('loading-scene')
   }
 
+  init (data) {
+    this.data = data
+  }
+
   preload () {
     this.load.baseURL = 'assets/'
     // loading screen setup
@@ -36,15 +40,11 @@ export class LoadingScene extends Scene {
     percentText.setOrigin(0.5, 0.5)
 
     this.load.on('progress', function (value) {
-      console.log(value)
-      percentText.setText(parseInt(value * 100) + '%')
+      console.log(percentText)
+      // percentText.setText(parseInt(value * 100) + '%')
       progressBar.clear()
       progressBar.fillStyle(0xffffff, 1)
       progressBar.fillRect(250, 280, 300 * value, 30)
-    })
-
-    this.load.on('fileprogress', function (file) {
-      console.log(file.src)
     })
 
     this.load.on('complete', function () {
@@ -55,147 +55,182 @@ export class LoadingScene extends Scene {
       percentText.destroy()
     })
 
-    // title scene
-    this.load.image('titleBg', 'title/parallax-mountain-bg.png')
-    this.load.image('titleFarMount', 'title/parallax-mountain-montain-far.png')
-    this.load.image('titleMount', 'title/parallax-mountain-mountains.png')
-    this.load.image('titleTrees', 'title/parallax-mountain-trees.png')
-    this.load.image('titleForeground', 'title/parallax-mountain-foreground-trees.png')
-    this.load.image('start-game', 'title/start-game.png')
-    this.load.image('game-logo', 'title/game-logo.png')
+    if (this.data.scene === undefined || this.data.scene === 'title') {
+      // title scene
+      this.load.image('titleBg', 'title/parallax-mountain-bg.png')
+      this.load.image('titleFarMount', 'title/parallax-mountain-montain-far.png')
+      this.load.image('titleMount', 'title/parallax-mountain-mountains.png')
+      this.load.image('titleTrees', 'title/parallax-mountain-trees.png')
+      this.load.image('titleForeground', 'title/parallax-mountain-foreground-trees.png')
+      this.load.image('start-game', 'title/start-game.png')
+      this.load.image('game-logo', 'title/game-logo.png')
 
-    this.load.image('controlsIntro', 'title/intro.png')
-    this.load.image('arrow', 'title/arrow.png')
+      this.load.image('controlsIntro', 'title/intro.png')
+      this.load.image('arrow', 'title/arrow.png')
 
-    // death scene
-    this.load.image('death-text', 'death/death-text.png')
-    this.load.image('play-again', 'death/play-again.png')
-    this.load.image('deathBg', 'death/background_0.png')
+      this.load.audio('titleAudio', ['ui/audio/kieran-title-credits.mp3'])
 
-    // win scene
-    this.load.image('win-text', 'win/win.png')
-    this.load.image('winBg', 'win/winbg.png')
-    this.load.image('banana', 'win/banana.png')
+      // death scene
+      this.load.image('death-text', 'death/death-text.png')
+      this.load.image('play-again', 'death/play-again.png')
+      this.load.image('deathBg', 'death/background_0.png')
 
-    // load audio
-    this.load.audio('titleAudio', ['ui/audio/kieran-title-credits.mp3'])
-    this.load.audio('level1BgAudio', ['ui/audio/level-1-music.mp3'])
-    this.load.audio('level2BgAudio', ['ui/audio/level-2-music.mp3'])
-    this.load.audio('level3BgAudio', ['ui/audio/level-3-music.mp3'])
-    this.load.audio('level4BgAudio', ['ui/audio/level-4-music.mp3'])
-    this.load.audio('level45BgAudio', ['ui/audio/level-45-music.mp3'])
-    this.load.audio('level5BgAudio', ['ui/audio/level-5-music.mp3'])
-    this.load.audio('playerDamageAudio', ['ui/audio/TakeDamage.mp3'])
-    this.load.audio('playerFireAudio', ['ui/audio/pewpew.mp3'])
-    this.load.audio('portalAudio', ['ui/audio/portal.mp3'])
-    this.load.audio('stepsAudio', ['ui/audio/steps.mp3'])
-    this.load.audio('enemyDamage', ['ui/audio/enemy-hurt.mp3'])
-    this.load.audio('prueAudio', ['ui/audio/prue.mp3'])
-    this.load.audio('ahmadAudio', ['ui/audio/ahmad.mp3'])
-    this.load.audio('jaredAudio', ['ui/audio/jared.mp3'])
-    this.load.audio('caroAudio', ['ui/audio/caro.mp3'])
-    this.load.audio('eleanorAudio', ['ui/audio/eleanor.mp3'])
+      // win scene
+      this.load.image('win-text', 'win/win.png')
+      this.load.image('winBg', 'win/winbg.png')
+      this.load.image('banana', 'win/banana.png')
+    } else {
+      // enemy health
+      this.load.image('enemy-red-bar', 'ui/health/Pixel1_Healthbar_border.png')
+      this.load.image('enemy-shadow-bar', 'ui/health/Pixel1_Healthbar.png')
+      // player health
+      this.load.image('green-bar', 'ui/health/health_bar_decoration.png')
+      this.load.image('red-bar', 'ui/health/health_bar.png')
 
-    // enemy health
-    this.load.image('enemy-red-bar', 'ui/health/Pixel1_Healthbar_border.png')
-    this.load.image('enemy-shadow-bar', 'ui/health/Pixel1_Healthbar.png')
-    // player health
-    this.load.image('green-bar', 'ui/health/health_bar_decoration.png')
-    this.load.image('red-bar', 'ui/health/health_bar.png')
+      // Player atlas
+      this.load.atlas('player', 'sprites/anims/wizard-sheet.png', 'sprites/atlas/wizard.json')
 
-    // level 1
-    this.load.image('clouds', 'tilemaps/level-1/clouds.png')
-    this.load.image('ground', 'tilemaps/level-1/tilesetOpenGame.png')
-    this.load.image('water', 'tilemaps/level-1/WaterTextures.png')
-    this.load.image('foliage', 'tilemaps/level-1/grass-trees.png')
-    this.load.image('house', 'tilemaps/level-1/Village-Endesga-Buildings.png')
-    this.load.tilemapTiledJSON('map', 'tilemaps/level-1/countryLevel.json')
-    // level 1 parallax images
-    this.load.image('background', 'tilemaps/level-1/country-platform-back.png')
-    this.load.image('foreground', 'tilemaps/level-1/country-platform-forest.png')
+      // load sprite atlases
+      this.load.atlas('gen-mob-1', 'sprites/anims/gen-mob-1.png', 'sprites/atlas/gen-mob-1-atlas.json')
+      this.load.atlas('gen-mob-2', 'sprites/anims/gen-mob-2.png', 'sprites/atlas/gen-mob-2-atlas.json')
+      this.load.atlas('gen-mob-3', 'sprites/anims/gen-mob-3.png', 'sprites/atlas/gen-mob-3-atlas.json')
+      this.load.atlas('gen-mob-4', 'sprites/anims/gen-mob-4.png', 'sprites/atlas/gen-mob-4-atlas.json')
 
-    // level 1 boss (duck bear)
-    this.load.atlas('duck-boss', 'sprites/anims/duck.png', 'sprites/atlas/duck-atlas.json')
-    this.load.atlas('bear-boss', 'sprites/anims/bear.png', 'sprites/atlas/bear-atlas.json')
+      this.load.atlas('viking', 'sprites/anims/viking2.png', 'sprites/atlas/viking-atlas.json')
+      this.load.atlas('sushi-hands', 'sprites/anims/sushi-hands.png', 'sprites/atlas/hand-sushi-boss-atlas.json')
+      this.load.atlas('prue-boss', 'sprites/anims/prue-boss.png', 'sprites/atlas/prue-boss-atlas.json')
+      this.load.atlas('ahmad-boss', 'sprites/anims/ahmad-boss.png', 'sprites/atlas/ahmad-boss-atlas.json')
 
-    // level 2
-    this.load.image('level2-tiles', 'tilemaps/level-2/kitchen-shee-flattenedt.png')
-    this.load.image('level2Bg', 'tilemaps/level-2/tileset.png')
-    this.load.image('level2Water', 'tilemaps/level-2/Water.png')
-    this.load.tilemapTiledJSON('level2-map', 'tilemaps/level-2/eleanor.json')
+      this.load.atlas('portal', 'sprites/anims/portal.png', 'sprites/atlas/portal.json')
 
-    // level 3
-    this.load.image('level3-tiles', 'tilemaps/level-3/Wasteland-Files.png')
-    this.load.tilemapTiledJSON('level3-map', 'tilemaps/level-3/Ahmad2.json')
-    // level 3 parallax images
-    this.load.image('level3Bg', 'tilemaps/level-3/Wasteland_Sky.png')
-    this.load.image('level3Mountain1', 'tilemaps/level-3/Wasteland_Mountains_1.png')
-    this.load.image('level3Mountain2', 'tilemaps/level-3/Wasteland_Mountains_2.png')
+      this.load.atlas('water-bullet', 'sprites/anims/water-bullet.png', 'sprites/atlas/water-bullet-atlas.json')
+      this.load.atlas('water-bullet-impact', 'sprites/anims/water-bullet-impact.png', 'sprites/atlas/water-bullet-impact-atlas.json')
 
-    // level 4
-    this.load.image('level4Clouds', 'tilemaps/level-4/cloud_tileset.png')
-    this.load.image('level4Ground', 'tilemaps/level-4/Terrain.png')
-    this.load.tilemapTiledJSON('level4-map', 'tilemaps/level-4/caro.json')
-    // level 4 parallax images
-    this.load.image('level4Bg1', 'tilemaps/level-4/layer06_sky.png')
-    this.load.image('level4Bg2', 'tilemaps/level-4/layer05_rocks.png')
-    this.load.image('level4Bg4', 'tilemaps/level-4/layer03_trees.png')
-    this.load.image('level4Bg5', 'tilemaps/level-4/layer02_cake.png')
-    this.load.image('level4Bg6', 'tilemaps/level-4/layer01_ground.png')
+      // golem
+      this.load.atlas('golem-dead', 'sprites/anims/golempack/GolemDead.png', 'sprites/atlas/golemAtlas/dead-atlas.json')
+      this.load.atlas('golem-punch', 'sprites/anims/golempack/GolemDoublePunch.png', 'sprites/atlas/golemAtlas/punch-atlas.json')
+      this.load.atlas('golem-idle', 'sprites/anims/golempack/GolemIdle.png', 'sprites/atlas/golemAtlas/idle-atlas.json')
+      this.load.atlas('golem-walk', 'sprites/anims/golempack/GolemWalk.png', 'sprites/atlas/golemAtlas/walk-atlas.json')
 
-    this.load.atlas('caro-boss', 'sprites/anims/caro-boss.png', 'sprites/atlas/caro-boss-atlas.json')
+      // bullets
+      this.load.atlas('mon-bullet', 'sprites/anims/mon-bullet.png', 'sprites/atlas/mon-bullet-atlas.json')
+      this.load.atlas('ice-bullet', 'sprites/anims/ice-bullet.png', 'sprites/atlas/ice-bullet-atlas.json')
 
-    // level 4.5
-    this.load.image('level45', 'tilemaps/level-4.5/Retro-Lines-Tiles-transparent.png')
-    this.load.tilemapTiledJSON('level45-map', 'tilemaps/level-4.5/caro2.json')
+      // Environmental sounds
+      this.load.audio('playerDamageAudio', ['ui/audio/TakeDamage.mp3'])
+      this.load.audio('playerFireAudio', ['ui/audio/pewpew.mp3'])
+      this.load.audio('portalAudio', ['ui/audio/portal.mp3'])
+      this.load.audio('stepsAudio', ['ui/audio/steps.mp3'])
+      this.load.audio('enemyDamage', ['ui/audio/enemy-hurt.mp3'])
+    }
 
-    // level 5
-    this.load.image('level5-bg', 'tilemaps/level-5/background.png')
-    this.load.image('level5-ground', 'tilemaps/level-5/tiles.png')
-    this.load.image('platforms', 'tilemaps/level-5/platform.png')
-    this.load.image('props', 'tilemaps/level-5/props.png')
-    this.load.tilemapTiledJSON('level5-map', 'tilemaps/level-5/underwater-level.json')
+    if (this.data.scene === 'level-1-scene') {
+      // Background music and NPC dialogue
+      this.load.audio('level1BgAudio', ['ui/audio/level-1-music.mp3'])
+      this.load.audio('jaredAudio', ['ui/audio/jared.mp3'])
 
-    // level 5 parallax images
-    this.load.image('level5-Bg2', 'tilemaps/level-5/midground.png')
-    this.load.image('level5-Bg3', 'tilemaps/level-5/foregound-merged.png')
+      // level 1
+      this.load.image('clouds', 'tilemaps/level-1/clouds.png')
+      this.load.image('ground', 'tilemaps/level-1/tilesetOpenGame.png')
+      this.load.image('water', 'tilemaps/level-1/WaterTextures.png')
+      this.load.image('foliage', 'tilemaps/level-1/grass-trees.png')
+      this.load.image('house', 'tilemaps/level-1/Village-Endesga-Buildings.png')
+      this.load.tilemapTiledJSON('map', 'tilemaps/level-1/countryLevel.json')
+      // level 1 parallax images
+      this.load.image('background', 'tilemaps/level-1/country-platform-back.png')
+      this.load.image('foreground', 'tilemaps/level-1/country-platform-forest.png')
 
-    // player sprite
-    this.load.image('adventurer', 'sprites/img/adventurer-idle-00.png')
+      // level 1 boss (duck bear)
+      this.load.atlas('duck-boss', 'sprites/anims/duck.png', 'sprites/atlas/duck-atlas.json')
+      this.load.atlas('bear-boss', 'sprites/anims/bear.png', 'sprites/atlas/bear-atlas.json')
+      // Facilitator atlas
+      this.load.atlas('jared', 'sprites/anims/jared-spritesheet.png', 'sprites/atlas/facilitator-atlas.json')
+    } else if (this.data.scene === 'level-2-scene') {
+      // Background music and NPC dialogue
+      this.load.audio('level2BgAudio', ['ui/audio/level-2-music.mp3'])
+      this.load.audio('eleanorAudio', ['ui/audio/eleanor.mp3'])
 
-    // load sprite atlases
-    this.load.atlas('gen-mob-1', 'sprites/anims/gen-mob-1.png', 'sprites/atlas/gen-mob-1-atlas.json')
-    this.load.atlas('gen-mob-2', 'sprites/anims/gen-mob-2.png', 'sprites/atlas/gen-mob-2-atlas.json')
-    this.load.atlas('gen-mob-3', 'sprites/anims/gen-mob-3.png', 'sprites/atlas/gen-mob-3-atlas.json')
-    this.load.atlas('gen-mob-4', 'sprites/anims/gen-mob-4.png', 'sprites/atlas/gen-mob-4-atlas.json')
-    this.load.atlas('player', 'sprites/anims/wizard-sheet.png', 'sprites/atlas/wizard.json')
-    this.load.atlas('viking', 'sprites/anims/viking2.png', 'sprites/atlas/viking-atlas.json')
-    this.load.atlas('sushi-hands', 'sprites/anims/sushi-hands.png', 'sprites/atlas/hand-sushi-boss-atlas.json')
-    this.load.atlas('prue-boss', 'sprites/anims/prue-boss.png', 'sprites/atlas/prue-boss-atlas.json')
-    this.load.atlas('ahmad-boss', 'sprites/anims/ahmad-boss.png', 'sprites/atlas/ahmad-boss-atlas.json')
+      // level 2
+      this.load.image('level2-tiles', 'tilemaps/level-2/kitchen-shee-flattenedt.png')
+      this.load.image('level2Bg', 'tilemaps/level-2/tileset.png')
+      this.load.image('level2Water', 'tilemaps/level-2/Water.png')
+      this.load.tilemapTiledJSON('level2-map', 'tilemaps/level-2/eleanor.json')
+    } else if (this.data.scene === 'level-3-scene') {
+      // Background music and NPC dialogue
+      this.load.audio('level3BgAudio', ['ui/audio/level-3-music.mp3'])
+      this.load.audio('ahmadAudio', ['ui/audio/ahmad.mp3'])
 
-    this.load.atlas('portal', 'sprites/anims/portal.png', 'sprites/atlas/portal.json')
+      // level 3
+      this.load.image('level3-tiles', 'tilemaps/level-3/Wasteland-Files.png')
+      this.load.tilemapTiledJSON('level3-map', 'tilemaps/level-3/Ahmad2.json')
+      // level 3 parallax images
+      this.load.image('level3Bg', 'tilemaps/level-3/Wasteland_Sky.png')
+      this.load.image('level3Mountain1', 'tilemaps/level-3/Wasteland_Mountains_1.png')
+      this.load.image('level3Mountain2', 'tilemaps/level-3/Wasteland_Mountains_2.png')
+    } else if (this.data.scene === 'level-4-scene') {
+      // Background music and NPC dialogue
+      this.load.audio('level4BgAudio', ['ui/audio/level-4-music.mp3'])
+      this.load.audio('level45BgAudio', ['ui/audio/level-45-music.mp3'])
+      this.load.audio('caroAudio', ['ui/audio/caro.mp3'])
 
-    // bullets
-    this.load.atlas('mon-bullet', 'sprites/anims/mon-bullet.png', 'sprites/atlas/mon-bullet-atlas.json')
-    this.load.atlas('ice-bullet', 'sprites/anims/ice-bullet.png', 'sprites/atlas/ice-bullet-atlas.json')
+      // level 4
+      this.load.image('level4Clouds', 'tilemaps/level-4/cloud_tileset.png')
+      this.load.image('level4Ground', 'tilemaps/level-4/Terrain.png')
+      this.load.tilemapTiledJSON('level4-map', 'tilemaps/level-4/caro.json')
+      // level 4 parallax images
+      this.load.image('level4Bg1', 'tilemaps/level-4/layer06_sky.png')
+      this.load.image('level4Bg2', 'tilemaps/level-4/layer05_rocks.png')
+      this.load.image('level4Bg4', 'tilemaps/level-4/layer03_trees.png')
+      this.load.image('level4Bg5', 'tilemaps/level-4/layer02_cake.png')
+      this.load.image('level4Bg6', 'tilemaps/level-4/layer01_ground.png')
 
-    this.load.atlas('water-bullet', 'sprites/anims/water-bullet.png', 'sprites/atlas/water-bullet-atlas.json')
-    this.load.atlas('water-bullet-impact', 'sprites/anims/water-bullet-impact.png', 'sprites/atlas/water-bullet-impact-atlas.json')
+      // level 4.5
+      this.load.image('level45', 'tilemaps/level-4.5/Retro-Lines-Tiles-transparent.png')
+      this.load.tilemapTiledJSON('level45-map', 'tilemaps/level-4.5/caro2.json')
+      // level 4.5 boss
+      this.load.atlas('caro-boss', 'sprites/anims/caro-boss.png', 'sprites/atlas/caro-boss-atlas.json')
+    } else if (this.data.scene === 'level-5-scene') {
+      // Background music and NPC dialogue
+      this.load.audio('level5BgAudio', ['ui/audio/level-5-music.mp3'])
+      this.load.audio('prueAudio', ['ui/audio/prue.mp3'])
 
-    // golem
-    this.load.atlas('golem-dead', 'sprites/anims/golempack/GolemDead.png', 'sprites/atlas/golemAtlas/dead-atlas.json')
-    this.load.atlas('golem-punch', 'sprites/anims/golempack/GolemDoublePunch.png', 'sprites/atlas/golemAtlas/punch-atlas.json')
-    this.load.atlas('golem-idle', 'sprites/anims/golempack/GolemIdle.png', 'sprites/atlas/golemAtlas/idle-atlas.json')
-    this.load.atlas('golem-walk', 'sprites/anims/golempack/GolemWalk.png', 'sprites/atlas/golemAtlas/walk-atlas.json')
+      // level 5
+      this.load.image('level5-bg', 'tilemaps/level-5/background.png')
+      this.load.image('level5-ground', 'tilemaps/level-5/tiles.png')
+      this.load.image('platforms', 'tilemaps/level-5/platform.png')
+      this.load.image('props', 'tilemaps/level-5/props.png')
+      this.load.tilemapTiledJSON('level5-map', 'tilemaps/level-5/underwater-level.json')
 
-    // them peeps
-    this.load.atlas('jared', 'sprites/anims/jared-spritesheet.png', 'sprites/atlas/facilitator-atlas.json')
+      // level 5 parallax images
+      this.load.image('level5-Bg2', 'tilemaps/level-5/midground.png')
+      this.load.image('level5-Bg3', 'tilemaps/level-5/foregound-merged.png')
+    }
   }
 
   create () {
     this.sound.add('titleAudio', { loop: true })
     this.sound.play('titleAudio')
-    this.scene.start('title-scene')
+
+    if (this.data.scene === 'title-scene' || this.data.scene === undefined) {
+      this.scene.start('title-scene')
+    } else if (this.data.scene === 'controls-scene') {
+      this.scene.start('controls-scene')
+    } else if (this.data.scene === 'death-scene') {
+      this.scene.start('death-scene')
+    } else if (this.data.scene === 'win-scene') {
+      this.scene.start('win-scene')
+    } else if (this.data.scene === 'level-1-scene') {
+      this.scene.start('level-1-scene')
+    } else if (this.data.scene === 'level-2-scene') {
+      this.scene.start('level-2-scene')
+    } else if (this.data.scene === 'level-3-scene') {
+      this.scene.start('level-3-scene')
+    } else if (this.data.scene === 'level-4-scene') {
+      this.scene.start('level-4-scene')
+    } else if (this.data.scene === 'level-45-scene') {
+      this.scene.start('level-45-scene')
+    } else if (this.data.scene === 'level-5-scene') {
+      this.scene.start('level-5-scene')
+    }
   }
 }
