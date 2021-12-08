@@ -23,15 +23,6 @@ export class Trigger extends Physics.Arcade.Sprite {
       duration: 1000,
       repeat: true
     })
-
-    const triggerZone = scene.physics.world.addOverlap(this, this.scene.player, () => {
-      this.scene.time.addEvent({
-        delay: 2500,
-        callback: () => this.scene.changeScene()
-      })
-      this.scene.sound.play('portalAudio', { volume: 0.2, loop: false })
-      this.scene.physics.world.removeCollider(triggerZone)
-    })
   }
 
   update () {

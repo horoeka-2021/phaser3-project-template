@@ -110,6 +110,14 @@ export class Boss3 extends Actor {
     this.scene.ahmad.spawn()
     this.scene.endLevel.setActive(true)
     this.scene.endLevel.setVisible(true)
+    const triggerZone = this.scene.physics.world.addOverlap(this.scene.endLevel, this.scene.player, () => {
+      this.scene.time.addEvent({
+        delay: 2000,
+        callback: () => this.scene.changeScene()
+      })
+      this.scene.sound.play('portalAudio', { volume: 0.2, loop: false })
+      this.scene.physics.world.removeCollider(triggerZone)
+    })
     this.once('animationcomplete', () => {
       console.log('animationcomplete')
       this.destroy()
