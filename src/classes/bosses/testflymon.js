@@ -1,21 +1,17 @@
 import { Actor } from '../actor'
 import { MobSpawner } from '../groups/mob-spawner'
 
-export class Boss4 extends Actor {
+export class TestBoss extends Actor {
   constructor (scene, x, y) {
-    super(scene, x, y, 'caro-boss')
+    super(scene, x, y, 'fly-mon')
 
     this.setScale(0.2)
+    this.setSize(480, 320)
     this.setAnims()
 
-    this.name = 'boss4'
+    this.name = 'TestBoss'
     this.hp = 100
     this.maxHealth = 100
-
-    this.flipX = true
-
-    this.spawner = new MobSpawner(this.scene, 50, -30)
-    this.scene.add.existing(this.spawner)
 
     this.setColliders(scene)
   }
@@ -23,8 +19,8 @@ export class Boss4 extends Actor {
   setAnims () {
     // idle
     this.scene.anims.create({
-      key: 'idle-caro-boss',
-      frames: this.scene.anims.generateFrameNames('caro-boss', {
+      key: 'idle-TestBoss-boss',
+      frames: this.scene.anims.generateFrameNames('fly-mon', {
         prefix: 'idle-',
         end: 3
       }),
@@ -33,10 +29,10 @@ export class Boss4 extends Actor {
     })
 
     this.scene.anims.create({
-      key: 'boss4-death',
-      frames: this.scene.anims.generateFrameNames('caro-boss', {
+      key: 'TestBoss-death',
+      frames: this.scene.anims.generateFrameNames('fly-mon', {
         prefix: 'death-',
-        end: 9
+        end: 4
       }),
       frameRate: 12
     })
@@ -52,16 +48,15 @@ export class Boss4 extends Actor {
       // this.spawner.spawnMob(this.x, this.y)
       // this.spawner.spawnMob(this.x, this.y)
       // this.spawner.spawnMob(this.x, this.y)
+      this.scene.sound.play('enemyDamage', { loop: false })
       this.getDamage(100)
       bullet.destroy()
-      this.scene.sound.stopByKey('stepsAudio')
-      this.scene.sound.play('stepsAudio', { volume: 0.08, loop: false })
     })
   }
 
   update () {
     if (this.active && this.hp > 0) {
-      this.anims.play('idle-caro-boss', true)
+      this.anims.play('idle-TestBoss-boss', true)
     }
   }
 }

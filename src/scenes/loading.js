@@ -67,6 +67,11 @@ export class LoadingScene extends Scene {
       this.load.image('controlsIntro', 'title/intro.png')
       this.load.image('arrow', 'title/arrow.png')
 
+      // credits
+      this.load.image('credits-button', 'title/credits-button.png')
+      this.load.image('credits-text', 'title/credits-text.png')
+      this.load.image('home-button', 'title/home-button.png')
+
       this.load.audio('titleAudio', ['ui/audio/kieran-title-credits.mp3'])
 
       // death scene
@@ -90,28 +95,17 @@ export class LoadingScene extends Scene {
       this.load.atlas('player', 'sprites/anims/wizard-sheet.png', 'sprites/atlas/wizard.json')
 
       // load sprite atlases
-      this.load.atlas('gen-mob-1', 'sprites/anims/gen-mob-1.png', 'sprites/atlas/gen-mob-1-atlas.json')
-      this.load.atlas('gen-mob-2', 'sprites/anims/gen-mob-2.png', 'sprites/atlas/gen-mob-2-atlas.json')
-      this.load.atlas('gen-mob-3', 'sprites/anims/gen-mob-3.png', 'sprites/atlas/gen-mob-3-atlas.json')
-      this.load.atlas('gen-mob-4', 'sprites/anims/gen-mob-4.png', 'sprites/atlas/gen-mob-4-atlas.json')
+      // this.load.atlas('gen-mob-1', 'sprites/anims/gen-mob-1.png', 'sprites/atlas/gen-mob-1-atlas.json')
+      // this.load.atlas('gen-mob-2', 'sprites/anims/gen-mob-2.png', 'sprites/atlas/gen-mob-2-atlas.json')
+      // this.load.atlas('gen-mob-3', 'sprites/anims/gen-mob-3.png', 'sprites/atlas/gen-mob-3-atlas.json')
+      // this.load.atlas('gen-mob-4', 'sprites/anims/gen-mob-4.png', 'sprites/atlas/gen-mob-4-atlas.json')
 
-      this.load.atlas('viking', 'sprites/anims/viking2.png', 'sprites/atlas/viking-atlas.json')
-      this.load.atlas('sushi-hands', 'sprites/anims/sushi-hands.png', 'sprites/atlas/hand-sushi-boss-atlas.json')
-      this.load.atlas('prue-boss', 'sprites/anims/prue-boss.png', 'sprites/atlas/prue-boss-atlas.json')
-      this.load.atlas('ahmad-boss', 'sprites/anims/ahmad-boss.png', 'sprites/atlas/ahmad-boss-atlas.json')
-
+      // End level portal atlas
       this.load.atlas('end-level', 'sprites/anims/portal.png', 'sprites/atlas/portal.json')
 
+      // bullets
       this.load.atlas('water-bullet', 'sprites/anims/water-bullet.png', 'sprites/atlas/water-bullet-atlas.json')
       this.load.atlas('water-bullet-impact', 'sprites/anims/water-bullet-impact.png', 'sprites/atlas/water-bullet-impact-atlas.json')
-
-      // golem
-      this.load.atlas('golem-dead', 'sprites/anims/golempack/GolemDead.png', 'sprites/atlas/golemAtlas/dead-atlas.json')
-      this.load.atlas('golem-punch', 'sprites/anims/golempack/GolemDoublePunch.png', 'sprites/atlas/golemAtlas/punch-atlas.json')
-      this.load.atlas('golem-idle', 'sprites/anims/golempack/GolemIdle.png', 'sprites/atlas/golemAtlas/idle-atlas.json')
-      this.load.atlas('golem-walk', 'sprites/anims/golempack/GolemWalk.png', 'sprites/atlas/golemAtlas/walk-atlas.json')
-
-      // bullets
       this.load.atlas('mon-bullet', 'sprites/anims/mon-bullet.png', 'sprites/atlas/mon-bullet-atlas.json')
       this.load.atlas('ice-bullet', 'sprites/anims/ice-bullet.png', 'sprites/atlas/ice-bullet-atlas.json')
 
@@ -139,9 +133,13 @@ export class LoadingScene extends Scene {
       this.load.image('background', 'tilemaps/level-1/country-platform-back.png')
       this.load.image('foreground', 'tilemaps/level-1/country-platform-forest.png')
 
+      // Enemy sprite atlases
+      this.load.atlas('gen-mob-2', 'sprites/anims/gen-mob-2.png', 'sprites/atlas/gen-mob-2-atlas.json')
+
       // level 1 boss (duck bear)
       this.load.atlas('duck-boss', 'sprites/anims/duck.png', 'sprites/atlas/duck-atlas.json')
       this.load.atlas('bear-boss', 'sprites/anims/bear.png', 'sprites/atlas/bear-atlas.json')
+
       // Facilitator atlas
       this.load.atlas('jared', 'sprites/anims/jared-spritesheet.png', 'sprites/atlas/facilitator-atlas.json')
     } else if (this.data.scene === 'level-2-scene') {
@@ -154,6 +152,14 @@ export class LoadingScene extends Scene {
       this.load.image('level2Bg', 'tilemaps/level-2/tileset.png')
       this.load.image('level2Water', 'tilemaps/level-2/Water.png')
       this.load.tilemapTiledJSON('level2-map', 'tilemaps/level-2/eleanor.json')
+
+      // Enemy sprite atlases
+      this.load.atlas('fly-mon', 'sprites/anims/fly-mon.png', 'sprites/atlas/fly-mon-atlas.json')
+      this.load.atlas('dirty-dishes', 'sprites/anims/dirty-dishes.png', 'sprites/atlas/dirty-dishes-atlas.json')
+      this.load.atlas('dish', 'sprites/anims/dish.png', 'sprites/atlas/dish-atlas.json')
+
+      // Boss
+      this.load.atlas('sushi-hands', 'sprites/anims/sushi-hands.png', 'sprites/atlas/hand-sushi-boss-atlas.json')
     } else if (this.data.scene === 'level-3-scene') {
       // Background music and NPC dialogue
       this.load.audio('level3BgAudio', ['ui/audio/level-3-music.mp3'])
@@ -166,6 +172,18 @@ export class LoadingScene extends Scene {
       this.load.image('level3Bg', 'tilemaps/level-3/Wasteland_Sky.png')
       this.load.image('level3Mountain1', 'tilemaps/level-3/Wasteland_Mountains_1.png')
       this.load.image('level3Mountain2', 'tilemaps/level-3/Wasteland_Mountains_2.png')
+
+      // Enemy sprite atlases
+      this.load.atlas('golem-dead', 'sprites/anims/golempack/GolemDead.png', 'sprites/atlas/golemAtlas/dead-atlas.json')
+      this.load.atlas('golem-punch', 'sprites/anims/golempack/GolemDoublePunch.png', 'sprites/atlas/golemAtlas/punch-atlas.json')
+      this.load.atlas('golem-idle', 'sprites/anims/golempack/GolemIdle.png', 'sprites/atlas/golemAtlas/idle-atlas.json')
+      this.load.atlas('golem-walk', 'sprites/anims/golempack/GolemWalk.png', 'sprites/atlas/golemAtlas/walk-atlas.json')
+      this.load.atlas('gen-mob-4', 'sprites/anims/gen-mob-4.png', 'sprites/atlas/gen-mob-4-atlas.json')
+      this.load.atlas('gen-mob-3', 'sprites/anims/gen-mob-3.png', 'sprites/atlas/gen-mob-3-atlas.json')
+      this.load.atlas('gen-mob-1', 'sprites/anims/gen-mob-1.png', 'sprites/atlas/gen-mob-1-atlas.json')
+
+      // Boss
+      this.load.atlas('ahmad-boss', 'sprites/anims/ahmad-boss.png', 'sprites/atlas/ahmad-boss-atlas.json')
     } else if (this.data.scene === 'level-4-scene') {
       // Background music and NPC dialogue
       this.load.audio('level4BgAudio', ['ui/audio/level-4-music.mp3'])
@@ -203,6 +221,12 @@ export class LoadingScene extends Scene {
       // level 5 parallax images
       this.load.image('level5-Bg2', 'tilemaps/level-5/midground.png')
       this.load.image('level5-Bg3', 'tilemaps/level-5/foregound-merged.png')
+
+      // Themed player sprite atlas
+      this.load.atlas('bubble-player', 'sprites/anims/wizard-sheet-bubble.png', 'sprites/atlas/wizard.json')
+
+      // Boss
+      this.load.atlas('prue-boss', 'sprites/anims/prue-boss.png', 'sprites/atlas/prue-boss-atlas.json')
     }
   }
 
