@@ -77,12 +77,8 @@ export class TempBoss2 extends Actor {
     scene.physics.world.addCollider(this.scene.player, this)
     scene.physics.world.addCollider(this, this.scene.jumpLayer)
     scene.physics.world.addCollider(this, this.scene.wall)
-    // scene.physics.world.addCollider(this.spawner, this.spawner)
 
     scene.physics.world.addCollider(scene.player.gun, this, (boss, bullet) => {
-      // this.spawner.spawnMob(this.x, this.y)
-      // this.spawner.spawnMob(this.x, this.y)
-      // this.spawner.spawnMob(this.x, this.y)
       this.scene.sound.play('enemyDamage', { loop: false })
       this.getDamage(100)
       bullet.destroy()
@@ -98,7 +94,6 @@ export class TempBoss2 extends Actor {
   update () {
     const dist = Math.Distance.BetweenPointsSquared(this, this.scene.player) / 4
     if (this.active && this.hp > 0) {
-      // console.log(dist / 4)
       this.checkFlip()
       if (dist <= 90000 && dist > 20000) {
         this.scene.physics.accelerateToObject(this, this.scene.player, 100, 180)

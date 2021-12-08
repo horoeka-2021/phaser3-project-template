@@ -12,13 +12,12 @@ export class HitBox extends Physics.Arcade.Sprite {
   // }
 
   spawn (x, y, config) {
-    console.log('hitbox, spawned')
     this.scene.add.existing(this)
     this.config = config
     this.setScale(config.scale)
     this.setSize(config.w, config.h)
     this.setOffset(config.xOff, config.yOff)
-    // this.setColliders(this.scene)
+
     this.x = x
     this.y = y
     this.setActive(true)
@@ -30,7 +29,6 @@ export class HitBox extends Physics.Arcade.Sprite {
       this.body.reset(x + 20, y)
       config.boss.anims.play(config.atkAnim, true)
       this.once('animationcomplete', () => {
-        console.log('animationcomplete')
         this.destroy()
       })
     } else {

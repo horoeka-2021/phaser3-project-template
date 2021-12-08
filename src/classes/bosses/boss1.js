@@ -7,11 +7,6 @@ export class Boss1 extends Actor {
   constructor (scene, x, y) {
     super(scene, x, y, 'duck-boss')
 
-    // for old boss
-    // this.setScale(10)
-    // this.setSize(30, 30)
-    // this.setOffset(50, 3)
-
     this.setAnims()
     this.hp = 100
     this.maxHealth = 100
@@ -124,8 +119,8 @@ export class Boss1 extends Actor {
       this.getDamage(10)
       this.scene.sound.stopByKey('stepsAudio')
       this.scene.sound.play('stepsAudio', { volume: 0.08, loop: false })
-      // scene.enemyHealthBar.scaleX = (this.hp / this.maxHealth)
-      // scene.enemyHealthBar.x -= (this.hp / this.maxHealth) - 1
+      scene.enemyHealthBar.scaleX = (this.hp / this.maxHealth)
+      scene.enemyHealthBar.x -= (this.hp / this.maxHealth) - 1
       bullet.destroy()
     })
   }

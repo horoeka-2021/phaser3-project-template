@@ -19,7 +19,7 @@ export class Credits extends Scene {
 
     // Detect when pointer is hovering over button, and change scene on click
     home.on('pointerdown', () =>
-      this.scene.start('title-scene'), console.log('loading title'))
+      this.scene.start('title-scene'))
 
     home.on('pointerover', () =>
       home.setTint(0xff0000a160))
@@ -42,7 +42,9 @@ export class Credits extends Scene {
     this.physics.world.setBounds(0, 0, 950, 2160)
     this.cameras.main.setBounds(0, 0, 950, 2160)
     this.time.addEvent({
-      callback: () => this.startScroll = true,
+      callback: () => {
+        this.startScroll = true
+      },
       delay: 2000,
       loop: false
     })

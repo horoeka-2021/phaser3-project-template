@@ -1,4 +1,3 @@
-// testing atlas purposes only
 import { Math } from 'phaser'
 import { Actor } from '../actor'
 import { MobSpawner } from '../groups/mob-spawner'
@@ -35,7 +34,6 @@ export class Boss3 extends Actor {
     }
     this.spawner = new MobSpawner(this.scene, 50, -30, 'gen-mob-1', ahmadMob)
     this.scene.add.existing(this.spawner)
-    // console.log(this.spawner)
     this.setColliders(scene)
   }
 
@@ -88,7 +86,6 @@ export class Boss3 extends Actor {
     scene.physics.world.addCollider(this.scene.player, this)
     scene.physics.world.addCollider(this, this.scene.jumpLayer)
     scene.physics.world.addCollider(this, this.scene.wall)
-    // scene.physics.world.addCollider(this.spawner, this.spawner)
 
     scene.physics.world.addCollider(scene.player.gun, this, (boss, bullet) => {
       this.spawner.spawnMob(this.x, this.y)

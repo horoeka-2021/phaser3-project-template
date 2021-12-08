@@ -57,7 +57,6 @@ export class Boss2 extends Actor {
         this.hitbox.hitPlayer = true
       })
       this.anims.play('atk-test-boss', true)
-      console.log(this.scene.player.active)
       this.hitbox.hitPlayer = false
     }
   }
@@ -118,16 +117,13 @@ export class Boss2 extends Actor {
       bullet.destroy()
       this.scene.sound.stopByKey('stepsAudio')
       this.scene.sound.play('stepsAudio', { volume: 0.08, loop: false })
-      // scene.enemyHealthBar.scaleX = (this.hp / this.maxHealth)
-      // scene.enemyHealthBar.x -= (this.hp / this.maxHealth) - 1
+      scene.enemyHealthBar.scaleX = (this.hp / this.maxHealth)
+      scene.enemyHealthBar.x -= (this.hp / this.maxHealth) - 1
     })
   }
 
   update () {
     if (this.active && this.hp > 0) {
-      // flip broken
-      // this.boss2Flip()
-
       const dist = Math.Distance.BetweenPointsSquared(this, this.scene.player) / 4
 
       if (dist > 20000 && dist < 80000) {

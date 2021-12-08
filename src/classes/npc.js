@@ -8,7 +8,6 @@ export class Facilitator extends Actor {
     this.body.setOffset(5, 0)
     this.name = texture
     this.speed = 220
-    console.log('jared', this)
     this.initAnimations()
     this.setColliders(scene)
     this.setVisible(false)

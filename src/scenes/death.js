@@ -3,7 +3,6 @@ import { Scene } from 'phaser'
 export class Death extends Scene {
   constructor () {
     super('death-scene')
-    console.log(this)
   }
 
   init (data) {
@@ -22,7 +21,7 @@ export class Death extends Scene {
 
     // Detect when pointer is hovering over button, and change scene on click
     restart.on('pointerdown', () =>
-      this.scene.start('level-' + this.checkpoint + '-scene'), console.log('loading scene 1'))
+      this.scene.start('level-' + this.checkpoint + '-scene'))
 
     restart.on('pointerover', () =>
       restart.setTint(0xff0000a160))

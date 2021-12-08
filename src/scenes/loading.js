@@ -28,30 +28,17 @@ export class LoadingScene extends Scene {
       }
     })
     loadingText.setOrigin(0.5, 0.5)
-    // var percentText = this.make.text({
-    //   x: width / 2,
-    //   y: height / 2 - 5,
-    //   text: '0%',
-    //   style: {
-    //     font: '18px monospace',
-    //     fill: '#ffffff'
-    //   }
-    // })
-    // percentText.setOrigin(0.5, 0.5)
 
     this.load.on('progress', function (value) {
-      // percentText.setText(parseInt(value * 100) + '%')
       progressBar.clear()
       progressBar.fillStyle(0xffffff, 1)
       progressBar.fillRect(250, 280, 300 * value, 30)
     })
 
     this.load.on('complete', function () {
-      console.log('complete')
       progressBar.destroy()
       progressBox.destroy()
       loadingText.destroy()
-      // percentText.destroy()
     })
 
     if (this.data.scene === undefined || this.data.scene === 'title') {

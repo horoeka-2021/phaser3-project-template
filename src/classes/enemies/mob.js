@@ -10,16 +10,6 @@ export class Mob extends Actor {
   }
 
   setAnims (config) {
-    // this.scene.anims.create({
-    //   // e.g 'gen-mob-4' + '-idle'
-    //   key: this.name + config.key,
-    //   frames: this.anims.generateFrameNames(config.name, {
-    //     prefix: config.prefix,
-    //     end: config.frameEnds
-    //   }),
-    //   frameRate: 12
-    // })
-
     this.scene.anims.create({
       key: this.name + '-run',
       frames: this.scene.anims.generateFrameNames(this.name, {

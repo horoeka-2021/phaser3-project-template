@@ -22,7 +22,6 @@ export class Hitboxes extends Physics.Arcade.Group {
   }
 
   spawnHitBox (x, y) {
-    console.log('spawnHitbox')
     const hitbox = this.getFirstDead(false)
     if (hitbox) {
       hitbox.spawn(x, y, this.config)

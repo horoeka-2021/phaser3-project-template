@@ -12,8 +12,6 @@ export class Patroller extends GameObjects.PathFollower {
 
     this.dying = false
 
-    console.log(this.body)
-
     this.gun = new Gun(this.scene, x, y - 400, 20)
     this.name = texture
     this.setColliders(scene)
@@ -41,7 +39,6 @@ export class Patroller extends GameObjects.PathFollower {
   die () {
     this.anims.play(this.name + '-death', true)
     this.once('animationcomplete', () => {
-      console.log('animationcomplete')
       this.destroy()
     })
   }

@@ -11,10 +11,8 @@ export class Trigger extends Physics.Arcade.Sprite {
     this.body.setOffset(45, 22)
     this.setScale(0.8)
 
-    this.setColliders(scene)
     this.setVisible(true)
     this.setActive(true)
-    // this.scene.add.image(875, 20, 'static-portal').setScrollFactor(0)
 
     this.scene.anims.create({
       key: 'portal-idle',
@@ -38,16 +36,7 @@ export class Trigger extends Physics.Arcade.Sprite {
 
   update () {
     if (this.active) {
-      console.log('Sup g')
       this.anims.play('portal-idle', true)
     }
-  }
-
-  setColliders (scene) {
-    scene.physics.world.addCollider(this, scene.wall)
-    scene.physics.world.addCollider(this, scene.jumpLayer)
-    scene.physics.world.addCollider(this, scene.water, () => {
-      this.destroy()
-    })
   }
 }

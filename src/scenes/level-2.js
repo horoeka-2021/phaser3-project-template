@@ -1,10 +1,9 @@
-import { Scene, Curves, Display } from 'phaser'
+import { Scene, Curves } from 'phaser'
 import { Player } from '../classes/player'
 import { Patroller } from '../classes/enemies/patroller'
 import { BossHpTrigger } from '../classes/triggers/bossHpTrigger'
 import { Boss2 } from '../classes/bosses/boss2'
 import { Trigger } from '../classes/triggers/endLevel'
-import { TestBoss } from '../classes/bosses/testflymon'
 
 export class Level2 extends Scene {
   constructor () {
@@ -94,18 +93,6 @@ export class Level2 extends Scene {
   }
 
   enemySetup () {
-    const vikingConfig = {
-      w: 24,
-      h: 24,
-      xOff: 5,
-      yOff: 8,
-      scale: 1,
-      frameEnds: {
-        idle: 6,
-        atk: 8
-      }
-    }
-
     const genmob4Config = {
       key: {
         idle: '-idle',
@@ -202,10 +189,7 @@ export class Level2 extends Scene {
     this.enemy18 = new Patroller(this, this.circle, 3400, 70, 'dish', dishConfig)
     this.enemy1 = new Patroller(this, this.curve, 4000, 374, 'dish', dishConfig)
 
-    console.log(this.enemy2)
     this.boss = new Boss2(this, 5500, 220)
-    this.testBoss = new TestBoss(this, 200, 220)
-    console.log(this.testBoss)
 
     this.enemy0.startFollow({
       duration: 2000,
@@ -325,80 +309,6 @@ export class Level2 extends Scene {
     this.healthLabel.setScrollFactor(0)
   }
 
-  debugSetup () {
-    this.input.on('pointerdown', () => {
-      this.player.godMode = !this.player.godMode
-    })
-    const debugGraphics = this.add.graphics().setAlpha(0.7)
-    this.jumpLayer.renderDebug(debugGraphics, {
-      tileColor: null,
-      collidingTileColor: new Display.Color(243, 234, 48, 255)
-    })
-    this.walls.renderDebug(debugGraphics, {
-      tileColor: null,
-      collidingTileColor: new Display.Color(243, 20, 48, 255)
-    })
-    this.water.renderDebug(debugGraphics, {
-      tileColor: null,
-      collidingTileColor: new Display.Color(20, 234, 48, 255)
-    })
-    this.mouseCoords = this.add.text(50, 25)
-    this.godMode = this.add.text(50, 45)
-    this.playerHealth = this.add.text(50, 65)
-    this.playerAmmo = this.add.text(50, 80)
-
-    this.getPlayer = this.input.keyboard.addKey('P')
-
-    const graphics = this.add.graphics()
-
-    graphics.lineStyle(1, 0xffffff, 1)
-
-    this.curve.draw(graphics, 64)
-    this.flying.draw(graphics, 64)
-
-    graphics.fillStyle(0x00ff00, 1)
-
-    this.scene1 = this.input.keyboard.addKey('ONE')
-    this.scene2 = this.input.keyboard.addKey('TWO')
-    this.scene3 = this.input.keyboard.addKey('THREE')
-    this.scene4 = this.input.keyboard.addKey('FOUR')
-    this.scene5 = this.input.keyboard.addKey('FIVE')
-  }
-
-  debugUpdate () {
-    this.mouseCoords.setText('X: ' + this.input.activePointer.worldX + ' Y: ' + this.input.activePointer.worldY)
-    this.mouseCoords.x = this.player.x
-    this.mouseCoords.y = this.player.y - 80
-    this.godMode.setText('God mode: ' + this.player.godMode)
-    this.godMode.x = this.player.x
-    this.godMode.y = this.player.y - 100
-    this.playerHealth.setText('Health: ' + this.player.hp)
-    this.playerHealth.x = this.player.x
-    this.playerHealth.y = this.player.y - 120
-    this.playerAmmo.setText('Ammo: ' + this.player.gun.children.entries.length)
-    this.playerAmmo.x = this.player.x
-    this.playerAmmo.y = this.player.y - 140
-
-    if (this.getPlayer.isDown) {
-      console.log(this.player)
-    }
-    if (this.scene1.isDown) {
-      this.scene.start('level-1-scene')
-    }
-    if (this.scene2.isDown) {
-      this.scene.start('level-2-scene')
-    }
-    if (this.scene3.isDown) {
-      this.scene.start('level-3-scene')
-    }
-    if (this.scene4.isDown) {
-      this.scene.start('level-4-scene')
-    }
-    if (this.scene5.isDown) {
-      this.scene.start('level-5-scene')
-    }
-  }
-
   update () {
     if (!this.enemy0.dying) {
       this.enemy0.update()
@@ -466,12 +376,6 @@ export class Level2 extends Scene {
       this.boss.update()
     } else if (this.boss.active) {
       this.boss.die()
-    }
-
-    if (this.testBoss.hp > 0) {
-      this.testBoss.update()
-    } else if (this.testBoss.active) {
-      this.testBoss.die()
     }
 
     if (this.player.hp > 0) {

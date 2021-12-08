@@ -126,7 +126,6 @@ export class Player extends Actor {
     this.setVelocityX(0)
     this.anims.play(this.name + '-death', true)
     this.once('animationcomplete', () => {
-      console.log('animationcomplete')
       this.scene.scene.start('death-scene', { checkpoint: this.scene.sceneNum })
     })
   }

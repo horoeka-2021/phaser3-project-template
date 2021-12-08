@@ -8,7 +8,6 @@ export class Bullet extends Physics.Arcade.Sprite {
   fire (x, y, facingLeft, config) {
     this.config = config
     this.scene.add.existing(this)
-    // console.log(this.flipX)
     this.setActive(true)
     this.setVisible(true)
 

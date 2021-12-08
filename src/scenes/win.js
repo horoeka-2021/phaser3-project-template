@@ -26,7 +26,7 @@ export class Win extends Scene {
     })
 
     arrow.on('pointerdown', () =>
-      this.scene.start('credits-scene'), console.log('title'))
+      this.scene.start('credits-scene'))
 
     arrow.on('pointerover', () =>
       arrow.setTint(0xff0000a160))

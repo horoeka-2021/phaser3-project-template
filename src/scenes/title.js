@@ -6,13 +6,6 @@ export class Title extends Scene {
   }
 
   create () {
-    // Test tool to allow loading of any scene from title screen
-    this.scene1 = this.input.keyboard.addKey('ONE')
-    this.scene2 = this.input.keyboard.addKey('TWO')
-    this.scene3 = this.input.keyboard.addKey('THREE')
-    this.scene4 = this.input.keyboard.addKey('FOUR')
-    this.scene5 = this.input.keyboard.addKey('FIVE')
-
     // Load image assets for title screen
     this.add.image(480, 260, 'titleBg').setScale(3.6)
     const farMount = this.add.image(490, 260, 'titleFarMount').setScale(3.6).setInteractive()
@@ -25,10 +18,10 @@ export class Title extends Scene {
 
     // Detect when pointer is hovering over button, and change scene on click
     start.on('pointerdown', () =>
-      this.scene.start('controls-scene'), console.log('loading controls'))
+      this.scene.start('controls-scene'))
 
     credit.on('pointerdown', () =>
-      this.scene.start('credits-scene'), console.log('loading credits'))
+      this.scene.start('credits-scene'))
 
     start.on('pointerover', () =>
       start.setTint(0xff0000a160))
@@ -59,28 +52,5 @@ export class Title extends Scene {
 
     farMount.on('pointerover', () =>
       credit.clearTint())
-  }
-
-  update () {
-    if (this.scene1.isDown) {
-      this.scene.start('level-1-scene')
-      this.sound.stopByKey('titleAudio')
-    }
-    if (this.scene2.isDown) {
-      this.scene.start('level-2-scene')
-      this.sound.stopByKey('titleAudio')
-    }
-    if (this.scene3.isDown) {
-      this.scene.start('level-3-scene')
-      this.sound.stopByKey('titleAudio')
-    }
-    if (this.scene4.isDown) {
-      this.scene.start('level-4-scene')
-      this.sound.stopByKey('titleAudio')
-    }
-    if (this.scene5.isDown) {
-      this.scene.start('level-5-scene')
-      this.sound.stopByKey('titleAudio')
-    }
   }
 }

@@ -16,8 +16,4 @@ export class BossHpTrigger extends Physics.Arcade.Sprite {
 
     this.setSize(config.sizeX, config.sizeY)
   }
-
-  update () {
-    // this.anims.play('portal', true)
-  }
 }

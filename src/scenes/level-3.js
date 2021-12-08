@@ -1,4 +1,4 @@
-import { Scene, Curves, Display } from 'phaser'
+import { Scene, Curves } from 'phaser'
 import { Player } from '../classes/player'
 import { Boss3 } from '../classes/bosses/boss3'
 import { Facilitator } from '../classes/npc'
@@ -76,12 +76,6 @@ export class Level3 extends Scene {
     this.cameras.main.setBounds(0, 0, 1920, 5760)
   }
 
-  // cameraUpdate () {
-  //   if(this.player.velocity.x < 0) {
-  //     this.cameras.
-  //   }
-  // }
-
   pathSetup () {
     const points1 = [50, 400, 135, 400]
     const flyingPoints = [50, 400, 125, 320, 200, 400]
@@ -111,81 +105,6 @@ export class Level3 extends Scene {
     // add text label to left of bar
     this.healthLabel = this.add.text(40, 40, 'Health', { fontSize: '20px', fill: '#ffffff' })
     this.healthLabel.setScrollFactor(0)
-  }
-
-  debugSetup () {
-    this.input.on('pointerdown', () => {
-      this.player.godMode = !this.player.godMode
-    })
-
-    const debugGraphics = this.add.graphics().setAlpha(0.7)
-    this.jumpLayer.renderDebug(debugGraphics, {
-      tileColor: null,
-      collidingTileColor: new Display.Color(243, 234, 48, 255)
-    })
-    this.walls.renderDebug(debugGraphics, {
-      tileColor: null,
-      collidingTileColor: new Display.Color(243, 20, 48, 255)
-    })
-    this.water.renderDebug(debugGraphics, {
-      tileColor: null,
-      collidingTileColor: new Display.Color(20, 234, 48, 255)
-    })
-    this.mouseCoords = this.add.text(50, 25)
-    this.godMode = this.add.text(50, 45)
-    this.playerHealth = this.add.text(50, 65)
-    this.playerAmmo = this.add.text(50, 80)
-
-    this.getPlayer = this.input.keyboard.addKey('P')
-
-    const graphics = this.add.graphics()
-
-    graphics.lineStyle(1, 0xffffff, 1)
-
-    this.curve.draw(graphics, 64)
-    this.flying.draw(graphics, 64)
-
-    graphics.fillStyle(0x00ff00, 1)
-
-    this.scene1 = this.input.keyboard.addKey('ONE')
-    this.scene2 = this.input.keyboard.addKey('TWO')
-    this.scene3 = this.input.keyboard.addKey('THREE')
-    this.scene4 = this.input.keyboard.addKey('FOUR')
-    this.scene5 = this.input.keyboard.addKey('FIVE')
-  }
-
-  debugUpdate () {
-    this.mouseCoords.setText('X: ' + this.input.activePointer.worldX + ' Y: ' + this.input.activePointer.worldY)
-    this.mouseCoords.x = this.player.x
-    this.mouseCoords.y = this.player.y - 80
-    this.godMode.setText('God mode: ' + this.player.godMode)
-    this.godMode.x = this.player.x
-    this.godMode.y = this.player.y - 100
-    this.playerHealth.setText('Health: ' + this.player.hp)
-    this.playerHealth.x = this.player.x
-    this.playerHealth.y = this.player.y - 120
-    this.playerAmmo.setText('Ammo: ' + this.player.gun.children.entries.length)
-    this.playerAmmo.x = this.player.x
-    this.playerAmmo.y = this.player.y - 140
-
-    if (this.getPlayer.isDown) {
-      console.log(this.player)
-    }
-    if (this.scene1.isDown) {
-      this.scene.start('level-1-scene')
-    }
-    if (this.scene2.isDown) {
-      this.scene.start('level-2-scene')
-    }
-    if (this.scene3.isDown) {
-      this.scene.start('level-3-scene')
-    }
-    if (this.scene4.isDown) {
-      this.scene.start('level-4-scene')
-    }
-    if (this.scene5.isDown) {
-      this.scene.start('level-5-scene')
-    }
   }
 
   update () {
