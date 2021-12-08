@@ -1,8 +1,6 @@
-// testing atlas purposes only
 import { Math } from 'phaser'
 import { Actor } from '../actor'
 import { Gun } from '../groups/gun'
-// import { MobSpawner } from '../groups/mob-spawner'
 
 export class Boss5 extends Actor {
   constructor (scene, x, y) {
@@ -118,7 +116,6 @@ export class Boss5 extends Actor {
 
   update () {
     const dist = Math.Distance.BetweenPointsSquared(this, this.scene.player)
-
     if (this.active && this.hp > 0) {
       this.boss2Flip()
       if (this.active && this.hp > 60 && dist > 300000) {
