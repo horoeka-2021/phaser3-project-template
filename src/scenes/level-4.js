@@ -75,36 +75,8 @@ export class Level4 extends Scene {
     this.cameras.main.startFollow(this.player, false, 0.5, 0.5, -400, 20)
     this.cameras.main.setBounds(0, 0, 4800, 1088)
   }
-
   enemySetup () {
-    const carrotConifg = {
-      key: {
-        run: '-run',
-        idle: '-idle'
-      },
-      w: 48,
-      h: 48,
-      xOff: 0,
-      yOff: 0,
-      scale: 3,
-      prefix: 'carrot-',
-      frameRate: 4,
-      frameEnds: {
-        idle: 0,
-        run: 2,
-        death: 4
-      }
-    }
 
-    this.carrotSpawn = new MobSpawner(this, 3000, 1000, 'carrot', carrotConifg)
-    this.add.existing(this.carrotSpawn)
-
-    this.time.addEvent({
-      callback: () => this.carrotSpawn.spawnMob(3000, 850),
-      callbackScope: this,
-      delay: 4000,
-      loop: true
-    })
     this.otter = new Otter(this, 4414, 850)
   }
 
