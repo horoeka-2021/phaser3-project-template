@@ -4,11 +4,7 @@ import { Patroller } from '../classes/enemies/patroller'
 import { BossHpTrigger } from '../classes/triggers/bossHpTrigger'
 import { Boss2 } from '../classes/bosses/boss2'
 import { Trigger } from '../classes/triggers/endLevel'
-<<<<<<< HEAD
-=======
-import { TestBoss } from '../classes/bosses/testflymon'
 import { Facilitator } from '../classes/npc'
->>>>>>> ca68586f4250e479f1930c67107ea9e59ff6a8e4
 
 export class Level2 extends Scene {
   constructor () {
@@ -20,11 +16,8 @@ export class Level2 extends Scene {
 
     this.initMap()
     this.initPlayer()
-<<<<<<< HEAD
     this.triggerSetup()
-=======
     this.initNpc()
->>>>>>> ca68586f4250e479f1930c67107ea9e59ff6a8e4
     this.pathSetup()
     this.enemySetup()
     this.uISetup()
@@ -396,7 +389,6 @@ export class Level2 extends Scene {
       this.eleanor.update()
     }
 
- 
     if (this.player.hp > 0) {
       this.player.update()
     } else if (this.player.active) {
