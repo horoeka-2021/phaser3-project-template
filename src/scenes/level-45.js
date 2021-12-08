@@ -126,9 +126,9 @@ export class Level45 extends Scene {
       }
     }
 
-    this.carrotSpawn = new MobSpawner(this, 3000, 1000, 'carrot', carrotConifg)
-    this.turdSpawn = new MobSpawner(this, 3000, 1000, 'turd', turdConifg)
-    this.bugSpawn = new MobSpawner(this, 3000, 1000, 'bug', bugConifg)
+    this.carrotSpawn = new MobSpawner(this, 3000, 1000, 'carrot', carrotConifg, 45)
+    this.turdSpawn = new MobSpawner(this, 3000, 1000, 'turd', turdConifg, 45)
+    this.bugSpawn = new MobSpawner(this, 3000, 1000, 'bug', bugConifg, 45)
     this.add.existing(this.carrotSpawn)
     this.add.existing(this.turdSpawn)
     this.add.existing(this.bugSpawn)

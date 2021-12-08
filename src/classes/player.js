@@ -159,9 +159,8 @@ export class Player extends Actor {
         this.canShoot = true
       }
       if (this.keyW.isDown && this.canJump) {
-        if (!this.godMode) {
-          this.canJump = false
-        }
+        this.canJump = false
+
         this.body.velocity.y = -this.jump
         this.anims.play('jump', true)
       }
@@ -207,8 +206,8 @@ export class Player extends Actor {
           this.body.setOffset(95, 55)
         }
       }
-      if (this.body.velocity.y < -450) {
-        this.body.velocity.y += 25
+      if (this.body.velocity.y > 450) {
+        this.body.velocity.y -= 25
       }
     }
   }
