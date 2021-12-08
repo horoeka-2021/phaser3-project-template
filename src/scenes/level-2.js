@@ -4,6 +4,11 @@ import { Patroller } from '../classes/enemies/patroller'
 import { BossHpTrigger } from '../classes/triggers/bossHpTrigger'
 import { Boss2 } from '../classes/bosses/boss2'
 import { Trigger } from '../classes/triggers/endLevel'
+<<<<<<< HEAD
+=======
+import { TestBoss } from '../classes/bosses/testflymon'
+import { Facilitator } from '../classes/npc'
+>>>>>>> ca68586f4250e479f1930c67107ea9e59ff6a8e4
 
 export class Level2 extends Scene {
   constructor () {
@@ -15,13 +20,18 @@ export class Level2 extends Scene {
 
     this.initMap()
     this.initPlayer()
+<<<<<<< HEAD
     this.triggerSetup()
+=======
+    this.initNpc()
+>>>>>>> ca68586f4250e479f1930c67107ea9e59ff6a8e4
     this.pathSetup()
     this.enemySetup()
     this.uISetup()
     this.cameraSetup()
 
     this.sound.stopAll()
+    this.sound.add('eleanorAudio')
     this.sound.add('portalAudio')
     this.sound.add('stepsAudio')
     this.sound.add('playerFireAudio')
@@ -58,6 +68,10 @@ export class Level2 extends Scene {
 
   initPlayer () {
     this.player = new Player(this, 100, 300)
+  }
+
+  initNpc () {
+    this.eleanor = new Facilitator(this, 5200, 410, 'eleanor').setScale(0.5)
   }
 
   cameraSetup () {
@@ -374,10 +388,15 @@ export class Level2 extends Scene {
 
     if (this.boss.hp > 0 && !this.boss.dying) {
       this.boss.update()
-    } else if (this.boss.active) {
+    } else if (this.boss.active && !this.eleanor.active) {
       this.boss.die()
     }
 
+    if (this.eleanor.active) {
+      this.eleanor.update()
+    }
+
+ 
     if (this.player.hp > 0) {
       this.player.update()
     } else if (this.player.active) {

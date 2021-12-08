@@ -21,7 +21,10 @@ export class Level1 extends Scene {
     this.uISetup()
     this.cameraSetup()
 
+    //  = pause
     this.sound.stopAll()
+    this.sound.add('jaredAudio')
+
     this.sound.add('portalAudio')
     this.sound.add('stepsAudio')
     this.sound.add('playerFireAudio')
@@ -68,7 +71,7 @@ export class Level1 extends Scene {
   }
 
   initNpc () {
-    this.jared = new Facilitator(this, 3000, 200, 'jared')
+    this.jared = new Facilitator(this, 3000, 440, 'jared').setScale(0.7)
   }
 
   cameraSetup () {
@@ -97,6 +100,7 @@ export class Level1 extends Scene {
       xOff: 9,
       yOff: 3,
       scale: 2,
+      frameRate: 12,
       frameEnds: {
         idle: 4,
         atk: 10,
@@ -166,13 +170,11 @@ export class Level1 extends Scene {
 
     if (this.boss.hp > 0) {
       this.boss.update()
-    } else if (this.boss.active) {
+    } else if (this.boss.active && !this.jared.active) {
       this.boss.die()
-      this.jared.setVisible(true)
-      this.jared.setActive(true)
-      if (this.jared.active) {
-        this.jared.update()
-      }
+    }
+    if (this.jared.active) {
+      this.jared.update()
     }
 
     if (this.player.hp > 0) {

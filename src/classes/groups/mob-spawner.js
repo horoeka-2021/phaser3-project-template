@@ -13,7 +13,7 @@ export class MobSpawner extends Physics.Arcade.Group {
 
     this.createMultiple({
       classType: Mob,
-      frameQuantity: 30,
+      frameQuantity: 120,
       active: false,
       visible: false,
       key: texture,

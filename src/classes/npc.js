@@ -1,11 +1,14 @@
 import { Actor } from './actor'
 
 export class Facilitator extends Actor {
-  constructor (scene, x, y, texture) {
+  constructor (scene, x, y, texture, config) {
     super(scene, x, y, texture)
 
+    this.config = config
+    this.scene.add.existing(this)
     this.body.setSize(55, 80)
     this.body.setOffset(5, 0)
+    this.body.allowGravity = false
     this.name = texture
     this.speed = 220
     this.initAnimations()
@@ -15,9 +18,17 @@ export class Facilitator extends Actor {
     this.flipX = true
   }
 
-  initAnimations () {
+  spawn (config) {
+    this.setVisible(true)
+    this.setActive(true)
+    console.log('on death', this.name, this)
+    this.scene.add.image(470, 60, this.name + 'Text').setScale(0.4).setScrollFactor(0)
+    this.scene.sound.play(this.name + 'Audio', { volume: 1, loop: false })
+  }
+
+  initAnimations (config) {
     this.scene.anims.create({
-      key: 'jared-walk',
+      key: this.name + '-walk',
       frames: this.scene.anims.generateFrameNames(this.name, {
         prefix: 'walk-',
         end: 7
@@ -28,7 +39,7 @@ export class Facilitator extends Actor {
   }
 
   setColliders (scene) {
-    scene.physics.world.addCollider(this, scene.wall)
+    scene.physics.world.addCollider(this, scene.walls)
     scene.physics.world.addCollider(this, scene.jumpLayer)
     scene.physics.world.addCollider(this, scene.water, () => {
       this.destroy()
@@ -36,8 +47,8 @@ export class Facilitator extends Actor {
   }
 
   update () {
-    this.setVelocityY(-220)
-    this.setVelocityX(-220)
-    this.anims.play('jared-walk', true)
+    this.setVelocityY(0)
+    this.setVelocityX(0)
+    this.anims.play(this.name + '-walk', true)
   }
 }

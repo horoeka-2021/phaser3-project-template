@@ -6,7 +6,7 @@ import { Gun } from '../groups/gun'
 export class Boss1 extends Actor {
   constructor (scene, x, y) {
     super(scene, x, y, 'duck-boss')
-
+    this.scene.add.existing(this)
     this.setAnims()
     this.hp = 100
     this.maxHealth = 100
@@ -23,6 +23,7 @@ export class Boss1 extends Actor {
       xOff: 0,
       yOff: 0,
       scale: 0.3,
+      frameRate: 12,
       frameEnds: {
         run: 3
       }
@@ -74,6 +75,16 @@ export class Boss1 extends Actor {
       }),
       frameRate: 3,
       repeat: 0
+    })
+  }
+
+  die () {
+    this.setVelocityX(0)
+    this.anims.play(this.name + '-death', true)
+    this.scene.jared.spawn()
+    this.once('animationcomplete', () => {
+      console.log('animationcomplete')
+      this.destroy()
     })
   }
 

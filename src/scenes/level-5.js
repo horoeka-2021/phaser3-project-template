@@ -3,6 +3,7 @@ import { Boss5 } from '../classes/bosses/boss5'
 import { Player } from '../classes/player'
 import { Trigger } from '../classes/triggers/endLevel'
 import { BossHpTrigger } from '../classes/triggers/bossHpTrigger'
+import { Facilitator } from '../classes/npc'
 
 export class Level5 extends Scene {
   constructor () {
@@ -14,6 +15,7 @@ export class Level5 extends Scene {
     this.initMap()
     this.initPlayer()
     this.triggerSetup()
+    this.initNpc()
     this.pathSetup()
     this.enemySetup()
     this.uISetup()
@@ -62,6 +64,10 @@ export class Level5 extends Scene {
     this.player = new Player(this, 0, 1600)
   }
 
+  initNpc () {
+    this.prue = new Facilitator(this, 4025, 1765, 'prue').setScale(0.5)
+  }
+
   cameraSetup () {
     this.cameras.main.setViewport(0, 0, 960, 540)
     this.physics.world.setBounds(0, 0, 5755, 5760)
@@ -95,8 +101,12 @@ export class Level5 extends Scene {
 
     if (this.boss.hp > 0) {
       this.boss.update()
-    } else if (this.boss.active) {
+    } else if (this.boss.active && !this.prue.active) {
       this.boss.die()
+    }
+
+    if (this.prue.active) {
+      this.prue.update()
     }
   }
 }

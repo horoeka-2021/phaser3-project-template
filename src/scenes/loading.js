@@ -108,6 +108,7 @@ export class LoadingScene extends Scene {
       // Background music and NPC dialogue
       this.load.audio('level1BgAudio', ['ui/audio/level-1-music.mp3'])
       this.load.audio('jaredAudio', ['ui/audio/jared.mp3'])
+      this.load.image('jaredText', 'ui/speech-to-text/jared-text2.png')
 
       // level 1
       this.load.image('clouds', 'tilemaps/level-1/clouds.png')
@@ -133,6 +134,7 @@ export class LoadingScene extends Scene {
       // Background music and NPC dialogue
       this.load.audio('level2BgAudio', ['ui/audio/level-2-music.mp3'])
       this.load.audio('eleanorAudio', ['ui/audio/eleanor.mp3'])
+      this.load.image('eleanorText', 'ui/speech-to-text/eleanor-text.png')
 
       // level 2
       this.load.image('level2-tiles', 'tilemaps/level-2/kitchen-shee-flattenedt.png')
@@ -152,6 +154,7 @@ export class LoadingScene extends Scene {
       // Background music and NPC dialogue
       this.load.audio('level3BgAudio', ['ui/audio/level-3-music.mp3'])
       this.load.audio('ahmadAudio', ['ui/audio/ahmad.mp3'])
+      this.load.image('ahmadText', 'ui/speech-to-text/ahmad-text.png')
 
       // level 3
       this.load.image('level3-tiles', 'tilemaps/level-3/Wasteland-Files.png')
@@ -177,6 +180,7 @@ export class LoadingScene extends Scene {
       this.load.audio('level4BgAudio', ['ui/audio/level-4-music.mp3'])
       this.load.audio('level45BgAudio', ['ui/audio/level-45-music.mp3'])
       this.load.audio('caroAudio', ['ui/audio/caro.mp3'])
+      this.load.image('caroText', 'ui/speech-to-text/caro-text.png')
 
       // level 4
       this.load.image('level4Clouds', 'tilemaps/level-4/cloud_tileset.png')
@@ -198,6 +202,7 @@ export class LoadingScene extends Scene {
       // Background music and NPC dialogue
       this.load.audio('level5BgAudio', ['ui/audio/level-5-music.mp3'])
       this.load.audio('prueAudio', ['ui/audio/prue.mp3'])
+      this.load.image('prueText', 'ui/speech-to-text/prue-text.png')
 
       // level 5
       this.load.image('level5-bg', 'tilemaps/level-5/background.png')
