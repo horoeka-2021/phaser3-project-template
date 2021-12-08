@@ -4,6 +4,7 @@ import { Player } from '../classes/player'
 import { Trigger } from '../classes/triggers/endLevel'
 import { BossHpTrigger } from '../classes/triggers/bossHpTrigger'
 import { Facilitator } from '../classes/npc'
+import { MobSpawner } from '../classes/groups/mob-spawner'
 
 export class Level45 extends Scene {
   constructor () {
@@ -68,8 +69,89 @@ export class Level45 extends Scene {
   }
 
   enemySetup () {
-    // boss locaiton 310, 420
     this.boss = new Boss4(this, 310, 420)
+
+    const carrotConifg = {
+      key: {
+        run: '-run',
+        idle: '-idle'
+      },
+      w: 48,
+      h: 48,
+      xOff: 0,
+      yOff: 0,
+      scale: 2,
+      prefix: 'carrot-',
+      frameRate: 4,
+      frameEnds: {
+        idle: 0,
+        run: 2,
+        death: 4
+      }
+    }
+
+    const turdConifg = {
+      key: {
+        run: '-run',
+        idle: '-idle'
+      },
+      w: 48,
+      h: 48,
+      xOff: 0,
+      yOff: 0,
+      scale: 2,
+      prefix: 'turd-',
+      frameRate: 4,
+      frameEnds: {
+        idle: 1,
+        run: 3,
+        death: 4
+      }
+    }
+
+    const bugConifg = {
+      key: {
+        run: '-run'
+      },
+      w: 48,
+      h: 48,
+      xOff: 0,
+      yOff: 0,
+      scale: 2,
+      prefix: 'bug-',
+      frameRate: 4,
+      frameEnds: {
+        run: 3,
+        death: 4
+      }
+    }
+
+    this.carrotSpawn = new MobSpawner(this, 3000, 1000, 'carrot', carrotConifg)
+    this.turdSpawn = new MobSpawner(this, 3000, 1000, 'turd', turdConifg)
+    this.bugSpawn = new MobSpawner(this, 3000, 1000, 'bug', bugConifg)
+    this.add.existing(this.carrotSpawn)
+    this.add.existing(this.turdSpawn)
+    this.add.existing(this.bugSpawn)
+
+    this.time.addEvent({
+      callback: () => this.carrotSpawn.spawnMob(3000, 850),
+      callbackScope: this,
+      delay: 4000,
+      loop: true
+    })
+    this.time.addEvent({
+      callback: () => this.turdSpawn.spawnMob(2200, 435),
+      callbackScope: this,
+      delay: 3500,
+      loop: true
+    })
+
+    this.time.addEvent({
+      callback: () => this.bugSpawn.spawnMob(2650, 350),
+      callbackScope: this,
+      delay: 2000,
+      loop: true
+    })
   }
 
   triggerSetup () {

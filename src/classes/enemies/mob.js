@@ -73,7 +73,7 @@ export class Mob extends Actor {
   update () {
     const dist = Math.Distance.BetweenPointsSquared(this, this.scene.player) / 2
     if (this.active) {
-      if (dist > 25000 && dist < 50000 && this.config.key.run !== undefined) {
+      if (dist > 10000 && dist < 80000 && this.config.key.run !== undefined) {
         this.scene.physics.accelerateToObject(this, this.scene.player, 70, 180)
         this.anims.play(this.name + this.config.key.run, true)
         this.checkFlip()
