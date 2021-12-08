@@ -75,7 +75,6 @@ export class Level4 extends Scene {
     this.cameras.main.startFollow(this.player, false, 0.5, 0.5, -400, 20)
     this.cameras.main.setBounds(0, 0, 4800, 1088)
   }
-
   enemySetup () {
     const carrotConifg = {
       key: {
@@ -96,13 +95,44 @@ export class Level4 extends Scene {
       }
     }
 
+    const turdConifg = {
+      key: {
+        run: '-run',
+        idle: '-idle'
+      },
+      w: 48,
+      h: 48,
+      xOff: 0,
+      yOff: 0,
+      scale: 3,
+      prefix: 'turd-',
+      frameRate: 4,
+      frameEnds: {
+        idle: 1,
+        run: 3,
+        death: 4
+      }
+    }
+
+    // ive realised that the way conifg is setup for mob is different
+    // to the one for patroller, meaning cant use any of the atlas i set up
+    // unless the confrig for patroller is changed lmao hehe 
+
     this.carrotSpawn = new MobSpawner(this, 3000, 1000, 'carrot', carrotConifg)
+    this.turdSpawn = new MobSpawner(this, 3000, 1000, 'turd', turdConifg)
     this.add.existing(this.carrotSpawn)
+    this.add.existing(this.turdSpawn)
 
     this.time.addEvent({
       callback: () => this.carrotSpawn.spawnMob(3000, 850),
       callbackScope: this,
       delay: 4000,
+      loop: true
+    })
+    this.time.addEvent({
+      callback: () => this.turdSpawn.spawnMob(2500, 830),
+      callbackScope: this,
+      delay: 3500,
       loop: true
     })
     this.otter = new Otter(this, 4414, 850)
