@@ -10,6 +10,7 @@ export class Boss5 extends Actor {
     this.setSize(34, 41)
     this.setOffset(96, 70)
     this.setAnims()
+    this.flipX = true
 
     this.name = 'boss5'
     this.gun = new Gun(this.scene, x, y - 400, false, true, 40)

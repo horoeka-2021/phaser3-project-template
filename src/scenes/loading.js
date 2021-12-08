@@ -205,6 +205,15 @@ export class LoadingScene extends Scene {
       this.load.tilemapTiledJSON('level45-map', 'tilemaps/level-4.5/caro2.json')
       // level 4.5 boss
       this.load.atlas('caro-boss', 'sprites/anims/caro-boss.png', 'sprites/atlas/caro-boss-atlas.json')
+      this.load.atlas('blood', 'sprites/anims/blood.png', 'sprites/atlas/blood.json')
+
+      // Mob atlases
+      this.load.atlas('carrot', 'sprites/anims/lvl4mob.png', 'sprites/atlas/lvl4mob-atlas.json')
+      this.load.atlas('turd', 'sprites/anims/lvl4mob.png', 'sprites/atlas/lvl4mob-atlas.json')
+      this.load.atlas('bug', 'sprites/anims/lvl4mob.png', 'sprites/atlas/lvl4mob-atlas.json')
+      this.load.atlas('chicken', 'sprites/anims/lvl4mob.png', 'sprites/atlas/lvl4mob-atlas.json')
+
+      this.load.atlas('otter', 'sprites/anims/otter-spritesheet.png', 'sprites/atlas/otter-atlas.json')
 
       // facilitator
       this.load.atlas('caro', 'sprites/anims/Caro-spritesheet-export.png', 'sprites/atlas/caro-atlas.json')

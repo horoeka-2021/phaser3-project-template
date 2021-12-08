@@ -109,6 +109,7 @@ export class Level3 extends Scene {
       xOff: 14,
       yOff: 5,
       scale: 2,
+      prefix: '',
       frameRate: 12,
       frameEnds: {
         idle: 4,
@@ -117,18 +118,37 @@ export class Level3 extends Scene {
         death: 7
       }
     }
+    const genmob4Config = {
+      key: {
+        idle: '-idle',
+        atk: '-atk'
+      },
+      w: 16,
+      h: 16,
+      xOff: 73,
+      yOff: 69,
+      scale: 5,
+      prefix: '',
+      frameEnds: {
+        idle: 7,
+        atk: 5,
+        death: 3,
+        run: 0
+      }
+    }
 
     const genMob2Config = {
       key: {
         atk: '-atk',
         run: '-run',
-        idle: 'idle'
+        idle: '-idle'
       },
       w: 30,
       h: 30,
       xOff: 50,
       yOff: 3,
       scale: 1,
+      prefix: '',
       frameRate: 12,
       frameEnds: {
         idle: 4,
@@ -149,11 +169,11 @@ export class Level3 extends Scene {
       loop: true
     })
 
-    this.patrol1 = new Patroller(this, this.curve, 763, 2760, 'gen-mob-3', genMob1Config)
-    this.patrol2 = new Patroller(this, this.loop, 468, 2650, 'gen-mob-3', genMob1Config)
-    this.patrol3 = new Patroller(this, this.curve, 800, 2850, 'gen-mob-3', genMob1Config)
-    this.patrol4 = new Patroller(this, this.curve, 760, 3000, 'gen-mob-3', genMob1Config)
-    this.patrol5 = new Patroller(this, this.flying, 700, 3100, 'gen-mob-3', genMob1Config)
+    this.patrol1 = new Patroller(this, this.curve, 763, 2760, 'gen-mob-4', genmob4Config)
+    this.patrol2 = new Patroller(this, this.loop, 468, 2650, 'gen-mob-4', genmob4Config)
+    this.patrol3 = new Patroller(this, this.curve, 800, 2850, 'gen-mob-4', genmob4Config)
+    this.patrol4 = new Patroller(this, this.curve, 760, 3000, 'gen-mob-4', genmob4Config)
+    this.patrol5 = new Patroller(this, this.flying, 700, 3100, 'gen-mob-4', genmob4Config)
 
     this.patrol1.startFollow({
       duration: 3000,

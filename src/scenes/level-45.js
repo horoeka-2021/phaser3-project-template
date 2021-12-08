@@ -53,7 +53,7 @@ export class Level45 extends Scene {
   }
 
   initNpc () {
-    this.caro = new Facilitator(this, 314, 458, 'caro').setScale(0.5)
+    this.caro = new Facilitator(this, 270, 458, 'caro').setScale(0.5)
   }
 
   initPlayer () {

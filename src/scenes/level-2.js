@@ -100,23 +100,7 @@ export class Level2 extends Scene {
   }
 
   enemySetup () {
-    const genmob4Config = {
-      key: {
-        idle: '-idle',
-        atk: '-atk'
-      },
-      w: 16,
-      h: 16,
-      xOff: 73,
-      yOff: 69,
-      scale: 5,
-      frameEnds: {
-        idle: 7,
-        atk: 5,
-        death: 3,
-        run: 0
-      }
-    }
+
     const flymonConfig = {
       key: {
         idle: '-idle',
@@ -128,6 +112,7 @@ export class Level2 extends Scene {
       xOff: 0,
       yOff: 0,
       scale: 0.2,
+      prefix: '',
       frameEnds: {
         idle: 3,
         atk: 0,
@@ -148,6 +133,7 @@ export class Level2 extends Scene {
       xOff: 0,
       yOff: 0,
       scale: 2,
+      prefix: '',
       frameEnds: {
         idle: 5,
         atk: 0,
@@ -168,6 +154,7 @@ export class Level2 extends Scene {
       xOff: 0,
       yOff: 0,
       scale: 2,
+      prefix: '',
       frameEnds: {
         idle: 5,
         atk: 0,
