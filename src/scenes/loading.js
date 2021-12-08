@@ -157,6 +157,7 @@ export class LoadingScene extends Scene {
       this.load.atlas('fly-mon', 'sprites/anims/fly-mon.png', 'sprites/atlas/fly-mon-atlas.json')
       this.load.atlas('dirty-dishes', 'sprites/anims/dirty-dishes.png', 'sprites/atlas/dirty-dishes-atlas.json')
       this.load.atlas('dish', 'sprites/anims/dish.png', 'sprites/atlas/dish-atlas.json')
+      this.load.atlas('gen-mob-4', 'sprites/anims/gen-mob-4.png', 'sprites/atlas/gen-mob-4-atlas.json')
 
       // Boss
       this.load.atlas('sushi-hands', 'sprites/anims/sushi-hands.png', 'sprites/atlas/hand-sushi-boss-atlas.json')
