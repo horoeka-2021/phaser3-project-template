@@ -88,17 +88,6 @@ export class Gun extends Physics.Arcade.Group {
       frameRate: 16
     })
 
-    // plate bullet
-
-    this.scene.anims.create({
-      key: 'plateBulletEnd',
-      frames: this.scene.anims.generateFrameNames('dish', {
-        prefix: 'death-',
-        end: 4
-      }),
-      frameRate: 4
-    })
-
     this.scene.anims.create({
       key: 'waterBulletImpact',
       frames: this.scene.anims.generateFrameNames('water-bullet-impact', {

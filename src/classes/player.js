@@ -24,9 +24,21 @@ export class Player extends Actor {
 
     this.canShoot = true
     this.canJump = true
+    this.isWalking = false
 
     this.body.setSize(55, 85)
     this.body.setOffset(82, 55)
+
+    this.scene.time.addEvent({
+      callback: () => {
+        if (this.isWalking) {
+          this.scene.sound.play('stepsAudio', { volume: 0.08, loop: false })
+        }
+      },
+      callbackScope: this,
+      delay: 500,
+      loop: true
+    })
 
     this.initAnimations()
     this.setColliders()
@@ -67,7 +79,7 @@ export class Player extends Actor {
         prefix: 'run-',
         end: 7
       }),
-      frameRate: 12
+      duration: 1000
     })
 
     this.scene.anims.create({
@@ -112,16 +124,6 @@ export class Player extends Actor {
     return !this.canJump
   }
 
-  checkGodMode () {
-    if (this.godMode) {
-      this.speed = 660
-      this.jump = 400
-    } else {
-      this.speed = 220
-      this.jump = 220
-    }
-  }
-
   die () {
     this.setVelocityX(0)
     this.anims.play(this.name + '-death', true)
@@ -131,8 +133,6 @@ export class Player extends Actor {
   }
 
   update () {
-    this.checkGodMode()
-
     if (this.active) {
       this.setVelocityX(0)
       this.body.setOffset(82, 55)
@@ -157,9 +157,16 @@ export class Player extends Actor {
         this.canShoot = false
       }
 
+      if (this.keyA.isUp || this.keyD.isUp) {
+        this.isWalking = false
+      }
+
       if (this.keyA.isDown) {
         if (this.canShoot) {
           this.anims.play('run', true)
+        }
+        if (this.body.velocity.y === 0) {
+          this.isWalking = true
         }
         this.body.velocity.x = -this.speed
         this.checkFlip()
@@ -167,6 +174,9 @@ export class Player extends Actor {
       } else if (this.keyD.isDown) {
         if (this.canShoot) {
           this.anims.play('run', true)
+        }
+        if (this.body.velocity.y === 0) {
+          this.isWalking = true
         }
         this.body.velocity.x = this.speed
         this.checkFlip()
