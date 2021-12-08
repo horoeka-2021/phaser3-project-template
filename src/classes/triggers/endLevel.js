@@ -11,8 +11,8 @@ export class Trigger extends Physics.Arcade.Sprite {
     this.body.setOffset(45, 22)
     this.setScale(0.8)
 
-    this.setVisible(true)
-    this.setActive(true)
+    this.setVisible(false)
+    this.setActive(false)
 
     this.scene.anims.create({
       key: 'portal-idle',

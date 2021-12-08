@@ -12,7 +12,7 @@ export class TempBoss2 extends Actor {
     this.setOffset(49, 60)
     this.setAnims()
 
-    this.hp = 100
+    this.hp = 10
 
     this.name = 'tempBoss2'
 
@@ -33,7 +33,7 @@ export class TempBoss2 extends Actor {
       }
     }
 
-    this.spawner = new MobSpawner(this.scene, 50, -30, 'golem-walk', golemConfig)
+    this.spawner = new MobSpawner(this.scene, 50, -30, 'golem-walk', golemConfig, 40)
 
     this.golemGun = new Gun(this.scene, x, y - 400, 40)
     this.scene.add.existing(this.spawner)
@@ -112,14 +112,7 @@ export class TempBoss2 extends Actor {
       this.spawner.spawnMob(this.x, this.y)
       this.spawner.spawnMob(this.x, this.y)
       this.spawner.spawnMob(this.x, this.y)
-      this.spawner.spawnMob(this.x, this.y)
-      this.spawner.spawnMob(this.x, this.y)
-      this.spawner.spawnMob(this.x, this.y)
-      this.spawner.spawnMob(this.x, this.y)
-      this.spawner.spawnMob(this.x, this.y)
-      this.spawner.spawnMob(this.x, this.y)
-      this.spawner.spawnMob(this.x, this.y)
-      this.spawner.spawnMob(this.x, this.y)
+
       this.scene.sound.play('enemyDamage', { loop: false })
       this.getDamage(1)
       bullet.destroy()

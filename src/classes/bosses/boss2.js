@@ -2,7 +2,6 @@
 import { Math } from 'phaser'
 import { Actor } from '../actor'
 import { Hitboxes } from '../groups/hitboxes'
-import { MobSpawner } from '../groups/mob-spawner'
 
 export class Boss2 extends Actor {
   constructor (scene, x, y) {
@@ -21,9 +20,6 @@ export class Boss2 extends Actor {
     this.name = 'boss2'
     this.hp = 100
     this.maxHealth = 100
-
-    this.spawner = new MobSpawner(this.scene, 50, -30)
-    this.scene.add.existing(this.spawner)
 
     this.setColliders(scene)
     this.scene.time.addEvent({
@@ -48,16 +44,18 @@ export class Boss2 extends Actor {
   }
 
   spawnHitBox () {
-    if (this.atkPlayer === true && !this.dying && this.scene.player.active) {
-      this.hitbox.spawnHitBox(this.body.x - 400, this.body.y - 100)
-      const atkHitbox = this.scene.physics.world.addOverlap(this.scene.player, this.hitbox, (hitbox, player) => {
-        this.scene.player.getDamage(10)
-        this.scene.sound.play('playerDamageAudio', { volume: 0.1, loop: false })
-        this.scene.physics.world.removeCollider(atkHitbox)
-        this.hitbox.hitPlayer = true
-      })
-      this.anims.play('atk-test-boss', true)
-      this.hitbox.hitPlayer = false
+    if (this.atkPlayer === true && !this.dying) {
+      if (this.scene.player.active) {
+        this.hitbox.spawnHitBox(this.body.x - 400, this.body.y - 100)
+        const atkHitbox = this.scene.physics.world.addOverlap(this.scene.player, this.hitbox, (hitbox, player) => {
+          this.scene.player.getDamage(10)
+          this.scene.sound.play('playerDamageAudio', { volume: 0.1, loop: false })
+          this.scene.physics.world.removeCollider(atkHitbox)
+          this.hitbox.hitPlayer = true
+        })
+        this.anims.play('atk-test-boss', true)
+        this.hitbox.hitPlayer = false
+      }
     }
   }
 
@@ -107,6 +105,8 @@ export class Boss2 extends Actor {
     this.setVelocityX(0)
     this.anims.play(this.name + '-death', true)
     this.scene.eleanor.spawn()
+    this.scene.endLevel.setActive(true)
+    this.scene.endLevel.setVisible(true)
     this.once('animationcomplete', () => {
       console.log('animationcomplete')
       this.destroy()
@@ -117,12 +117,8 @@ export class Boss2 extends Actor {
     scene.physics.world.addCollider(this.scene.player, this)
     scene.physics.world.addCollider(this, this.scene.jumpLayer)
     scene.physics.world.addCollider(this, this.scene.wall)
-    scene.physics.world.addCollider(this.spawner, this.spawner)
 
     scene.physics.world.addOverlap(scene.player.gun, this, (boss, bullet) => {
-      this.spawner.spawnMob(this.x, this.y)
-      this.spawner.spawnMob(this.x, this.y)
-      this.spawner.spawnMob(this.x, this.y)
       this.getDamage(10)
       bullet.destroy()
       this.scene.sound.stopByKey('stepsAudio')

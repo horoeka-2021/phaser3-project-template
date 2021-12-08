@@ -2,7 +2,7 @@ import { Physics } from 'phaser'
 import { Mob } from '../enemies/mob'
 
 export class MobSpawner extends Physics.Arcade.Group {
-  constructor (scene, x, y, texture, config) {
+  constructor (scene, x, y, texture, config, ammo) {
     super(scene.physics.world, scene)
 
     this.defaults.setCollideWorldBounds = true
@@ -13,7 +13,7 @@ export class MobSpawner extends Physics.Arcade.Group {
 
     this.createMultiple({
       classType: Mob,
-      frameQuantity: 120,
+      frameQuantity: ammo,
       active: false,
       visible: false,
       key: texture,

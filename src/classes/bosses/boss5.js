@@ -86,6 +86,8 @@ export class Boss5 extends Actor {
     this.setVelocityX(0)
     this.anims.play(this.name + '-death', true)
     this.scene.prue.spawn()
+    this.scene.endLevel.setActive(true)
+    this.scene.endLevel.setVisible(true)
     this.once('animationcomplete', () => {
       console.log('animationcomplete')
       this.destroy()

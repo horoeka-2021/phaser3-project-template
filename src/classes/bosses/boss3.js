@@ -34,7 +34,7 @@ export class Boss3 extends Actor {
         atk: 7
       }
     }
-    this.spawner = new MobSpawner(this.scene, 50, -30, 'gen-mob-1', ahmadMob)
+    this.spawner = new MobSpawner(this.scene, 50, -30, 'gen-mob-1', ahmadMob, 10)
 
     this.forLoopGun = new Gun(this.scene, x, y - 400, 300)
     this.scene.add.existing(this.spawner)
@@ -54,7 +54,7 @@ export class Boss3 extends Actor {
       enemyGun: true,
       playerGun: false
     }
-    if (this.active && this.scene.player.active && Math.Distance.Between(this.scene.player.x, this.scene.player.y, this.x, this.y) < 800) {
+    if (this.active && this.scene.player.active && Math.Distance.Between(this.scene.player.x, this.scene.player.y, this.x, this.y) < 400) {
       this.forLoopGun.fireBullet(this.x, this.y, this.flipX, config)
     }
   }
@@ -108,6 +108,8 @@ export class Boss3 extends Actor {
     this.setVelocityX(0)
     this.anims.play(this.name + '-death', true)
     this.scene.ahmad.spawn()
+    this.scene.endLevel.setActive(true)
+    this.scene.endLevel.setVisible(true)
     this.once('animationcomplete', () => {
       console.log('animationcomplete')
       this.destroy()
@@ -121,8 +123,6 @@ export class Boss3 extends Actor {
 
     scene.physics.world.addCollider(scene.player.gun, this, (boss, bullet) => {
       this.spawner.spawnMob(this.x, this.y)
-      this.spawner.spawnMob(this.x, this.y)
-      this.spawner.spawnMob(this.x, this.y)
       this.scene.sound.play('enemyDamage', { loop: false })
       this.getDamage(10)
       bullet.destroy()
@@ -132,8 +132,8 @@ export class Boss3 extends Actor {
 
     scene.physics.world.addCollider(this.scene.player, this.forLoopGun, (player, bullet) => {
       player.getDamage(10)
-      scene.playerHealthBar.scaleX = (scene.player.hp / scene.player.maxHealth)
-      scene.playerHealthBar.x -= (scene.player.hp / scene.player.maxHealth) - 1
+      scene.playerHealthBar.scaleX -= 10
+      scene.playerHealthBar.x -= 1
       scene.sound.play('playerDamageAudio', { volume: 0.1, loop: false })
       bullet.destroy()
     })

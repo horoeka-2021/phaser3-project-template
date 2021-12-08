@@ -20,7 +20,7 @@ export class Player extends Actor {
     this.name = 'player1'
 
     this.speed = 220
-    this.jump = 220
+    this.jump = 260
 
     this.canShoot = true
     this.canJump = true
@@ -186,6 +186,9 @@ export class Player extends Actor {
         if (this.flipX) {
           this.body.setOffset(95, 55)
         }
+      }
+      if (this.body.velocity.y < -450) {
+        this.body.velocity.y += 25
       }
     }
   }

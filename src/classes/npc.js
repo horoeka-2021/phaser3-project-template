@@ -18,15 +18,14 @@ export class Facilitator extends Actor {
     this.flipX = true
   }
 
-  spawn (config) {
+  spawn () {
     this.setVisible(true)
     this.setActive(true)
-    console.log('on death', this.name, this)
     this.scene.add.image(470, 60, this.name + 'Text').setScale(0.4).setScrollFactor(0)
     this.scene.sound.play(this.name + 'Audio', { volume: 1, loop: false })
   }
 
-  initAnimations (config) {
+  initAnimations () {
     this.scene.anims.create({
       key: this.name + '-walk',
       frames: this.scene.anims.generateFrameNames(this.name, {

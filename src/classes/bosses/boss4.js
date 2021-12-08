@@ -46,6 +46,8 @@ export class Boss4 extends Actor {
     this.setVelocityX(0)
     this.anims.play(this.name + '-death', true)
     this.scene.caro.spawn()
+    this.scene.endLevel.setActive(true)
+    this.scene.endLevel.setVisible(true)
     this.once('animationcomplete', () => {
       console.log('animationcomplete')
       this.destroy()

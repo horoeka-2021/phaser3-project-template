@@ -133,7 +133,8 @@ export class Level2 extends Scene {
         atk: 0,
         run: 0,
         death: 4
-      }
+      },
+      hasGun: true
     }
 
     const dishesConfig = {
@@ -152,7 +153,8 @@ export class Level2 extends Scene {
         atk: 0,
         run: 0,
         death: 5
-      }
+      },
+      hasGun: true
     }
 
     const dishConfig = {
@@ -171,19 +173,18 @@ export class Level2 extends Scene {
         atk: 0,
         run: 0,
         death: 4
-      }
+      },
+      hasGun: true
     }
 
-    this.enemy0 = new Patroller(this, this.curve, 818, 413, 'gen-mob-4', genmob4Config)
-    this.enemy2 = new Patroller(this, this.curve, 1712, 412, 'gen-mob-4', genmob4Config)
-    this.enemy3 = new Patroller(this, this.flying, 1535, 392, 'gen-mob-4', genmob4Config)
-    this.enemy4 = new Patroller(this, this.circleLoop, 960, 100, 'gen-mob-4', genmob4Config)
-    this.enemy5 = new Patroller(this, this.flying, 420, 120, 'gen-mob-4', genmob4Config)
-    this.enemy6 = new Patroller(this, this.circleLoop, 1660, 110, 'gen-mob-4', genmob4Config)
-    this.enemy7 = new Patroller(this, this.circle, 2000, 400, 'gen-mob-4', genmob4Config)
-    this.enemy8 = new Patroller(this, this.curve, 2327, 390, 'gen-mob-4', genmob4Config)
-    this.enemy9 = new Patroller(this, this.circle, 2500, 96, 'fly-mon', flymonConfig)
-    this.enemy10 = new Patroller(this, this.flying, 2350, 200, 'gen-mob-4', genmob4Config)
+    this.enemy0 = new Patroller(this, this.curve, 818, 413, 'fly-mon', flymonConfig)
+    this.enemy2 = new Patroller(this, this.curve, 1712, 412, 'fly-mon', flymonConfig)
+    this.enemy3 = new Patroller(this, this.flying, 1535, 392, 'fly-mon', flymonConfig)
+    this.enemy4 = new Patroller(this, this.circleLoop, 960, 100, 'fly-mon', flymonConfig)
+    this.enemy6 = new Patroller(this, this.circleLoop, 1660, 110, 'fly-mon', flymonConfig)
+    this.enemy7 = new Patroller(this, this.circle, 2000, 400, 'fly-mon', flymonConfig)
+    this.enemy8 = new Patroller(this, this.curve, 2327, 390, 'fly-mon', flymonConfig)
+    this.enemy10 = new Patroller(this, this.flying, 2350, 200, 'fly-mon', flymonConfig)
     this.enemy11 = new Patroller(this, this.circleLoop, 2900, 390, 'fly-mon', flymonConfig)
     this.enemy12 = new Patroller(this, this.circle, 3100, 390, 'fly-mon', flymonConfig)
     this.enemy13 = new Patroller(this, this.flying, 3300, 390, 'fly-mon', flymonConfig)
@@ -216,12 +217,6 @@ export class Level2 extends Scene {
       repeat: -1
     })
 
-    this.enemy5.startFollow({
-      duration: 1300,
-      yoyo: true,
-      repeat: -1
-    })
-
     this.enemy6.startFollow({
       duration: 2500,
       yoyo: true,
@@ -236,12 +231,6 @@ export class Level2 extends Scene {
 
     this.enemy8.startFollow({
       duration: 1300,
-      yoyo: true,
-      repeat: -1
-    })
-
-    this.enemy9.startFollow({
-      duration: 4000,
       yoyo: true,
       repeat: -1
     })
@@ -334,9 +323,7 @@ export class Level2 extends Scene {
     if (!this.enemy4.dying) {
       this.enemy4.update()
     }
-    if (!this.enemy5.dying) {
-      this.enemy5.update()
-    }
+
     if (!this.enemy6.dying) {
       this.enemy6.update()
     }
@@ -346,9 +333,7 @@ export class Level2 extends Scene {
     if (!this.enemy8.dying) {
       this.enemy8.update()
     }
-    if (!this.enemy9.dying) {
-      this.enemy9.update()
-    }
+
     if (!this.enemy10.dying) {
       this.enemy10.update()
     }

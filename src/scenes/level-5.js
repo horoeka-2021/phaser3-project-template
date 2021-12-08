@@ -291,6 +291,19 @@ export class Level5 extends Scene {
     this.bossHealth = new BossHpTrigger(this, 4800, 1245, { healthBarX: 5400, healthBarY: 34, sizeX: 28, sizeY: 1200 })
   }
 
+  uISetup () {
+    // change position if needed (but use same position for both images)
+    var backgroundBar = this.add.image(150, 50, 'green-bar')
+    backgroundBar.setScrollFactor(0)
+
+    this.playerHealthBar = this.add.image(155, 50, 'red-bar')
+    this.playerHealthBar.setScrollFactor(0)
+
+    // add text label to left of bar
+    this.healthLabel = this.add.text(40, 40, 'Health', { fontSize: '20px', fill: '#ffffff' })
+    this.healthLabel.setScrollFactor(0)
+  }
+
   pathSetup () {
     const bob = [0, 20, 0, 40, 0, 20, 0, 0]
     const march = [50, 400, 650, 400]

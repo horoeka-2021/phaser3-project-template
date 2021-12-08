@@ -30,7 +30,7 @@ export class Boss1 extends Actor {
     }
 
     // bleed bears
-    this.spawner = new MobSpawner(this.scene, 50, -30, 'bear-boss', bearConfig)
+    this.spawner = new MobSpawner(this.scene, 50, -30, 'bear-boss', bearConfig, 30)
 
     this.bossGun = new Gun(this.scene, x, y - 400, 1000)
 
@@ -82,6 +82,8 @@ export class Boss1 extends Actor {
     this.setVelocityX(0)
     this.anims.play(this.name + '-death', true)
     this.scene.jared.spawn()
+    this.scene.endLevel.setActive(true)
+    this.scene.endLevel.setVisible(true)
     this.once('animationcomplete', () => {
       console.log('animationcomplete')
       this.destroy()

@@ -138,8 +138,8 @@ export class Level3 extends Scene {
       }
     }
 
-    this.mobSpawner1 = new MobSpawner(this, 2000, 1500, 'gen-mob-3', genMob1Config)
-    this.mobSpawner2 = new MobSpawner(this, 250, 5500, 'gen-mob-1', genMob2Config)
+    this.mobSpawner1 = new MobSpawner(this, 2000, 1500, 'gen-mob-3', genMob1Config, 5)
+    this.mobSpawner2 = new MobSpawner(this, 250, 5500, 'gen-mob-1', genMob2Config, 10)
     this.add.existing(this.mobSpawner1)
     this.add.existing(this.mobSpawner2)
 

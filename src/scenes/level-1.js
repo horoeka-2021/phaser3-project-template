@@ -106,7 +106,8 @@ export class Level1 extends Scene {
         atk: 10,
         run: 7,
         death: 4
-      }
+      },
+      hasGun: true
     }
 
     this.enemy1 = new Patroller(this, this.curve, 818, 413, 'gen-mob-2', mob3Config)
