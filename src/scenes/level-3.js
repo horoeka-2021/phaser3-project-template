@@ -7,14 +7,6 @@ import { BossHpTrigger } from '../classes/triggers/bossHpTrigger'
 
 import { TempBoss2 } from '../classes/bosses/tempBoss2'
 
-// import { Boss4 } from '../classes/bosses/boss4'
-// import { TempBoss } from '../classes/bosses/tempBoss'
-// import { TempBoss2 } from '../classes/bosses/tempBoss2'
-// import { TempBoss3 } from '../classes/bosses/tempBoss3'
-// import { TempBoss4 } from '../classes/bosses/tempBoss4'
-// import { Enemy1 } from '../classes/enemies/enemy-1'
-// import { Boss3 } from '../classes/enemies/boss3'
-
 export class Level3 extends Scene {
   constructor () {
     super('level-3-scene')
@@ -25,13 +17,12 @@ export class Level3 extends Scene {
 
     this.initMap()
     this.initPlayer()
+    this.triggerSetup()
     this.initNpc()
     this.pathSetup()
     this.enemySetup()
-    this.triggerSetup()
     this.uISetup()
     this.cameraSetup()
-
 
     this.sound.stopAll()
     this.sound.add('portalAudio')
@@ -198,6 +189,7 @@ export class Level3 extends Scene {
   }
 
   update () {
+    this.endLevel.update()
     if (this.player.hp > 0) {
       this.player.update()
     } else if (this.player.active) {

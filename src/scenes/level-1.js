@@ -14,10 +14,10 @@ export class Level1 extends Scene {
     this.sceneNum = 1
     this.initMap()
     this.initPlayer()
+    this.triggerSetup()
     this.initNpc()
     this.pathSetup()
     this.enemySetup()
-    this.triggerSetup()
     this.uISetup()
     this.cameraSetup()
 

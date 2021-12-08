@@ -22,7 +22,8 @@ export class Trigger extends Physics.Arcade.Sprite {
         prefix: 'idle-',
         end: 4
       }),
-      framerate: 1.25
+      duration: 1000,
+      repeat: true
     })
 
     const triggerZone = scene.physics.world.addOverlap(this, this.scene.player, () => {

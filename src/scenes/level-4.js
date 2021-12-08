@@ -12,12 +12,11 @@ export class Level4 extends Scene {
 
     this.initMap()
     this.initPlayer()
+    this.triggerSetup()
     this.pathSetup()
     this.enemySetup()
-    this.triggerSetup()
     this.uISetup()
     this.cameraSetup()
-
 
     this.sound.stopAll()
     this.sound.add('portalAudio')
@@ -78,7 +77,7 @@ export class Level4 extends Scene {
   }
 
   triggerSetup () {
-    this.trigger = new Trigger(this, 4320, 944)
+    this.endLevel = new Trigger(this, 4320, 944)
   }
 
   pathSetup () {
@@ -177,6 +176,7 @@ export class Level4 extends Scene {
   }
 
   update () {
+    this.endLevel.update()
     if (this.player.hp > 0) {
       this.player.update()
     } else if (this.player.active) {

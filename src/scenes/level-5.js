@@ -13,12 +13,11 @@ export class Level5 extends Scene {
     this.sceneNum = 5
     this.initMap()
     this.initPlayer()
+    this.triggerSetup()
     this.pathSetup()
     this.enemySetup()
-    this.triggerSetup()
     this.uISetup()
     this.cameraSetup()
-
 
     this.sound.stopAll()
     this.sound.add('portalAudio')
@@ -172,6 +171,7 @@ export class Level5 extends Scene {
   }
 
   update () {
+    this.endLevel.update()
     if (this.player.hp > 0) {
       this.player.update()
     } else if (this.player.active) {

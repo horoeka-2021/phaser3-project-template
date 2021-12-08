@@ -16,9 +16,9 @@ export class Level2 extends Scene {
 
     this.initMap()
     this.initPlayer()
+    this.triggerSetup()
     this.pathSetup()
     this.enemySetup()
-    this.triggerSetup()
     this.uISetup()
     this.cameraSetup()
 
@@ -459,6 +459,8 @@ export class Level2 extends Scene {
     if (!this.enemy18.dying) {
       this.enemy18.update()
     }
+
+    this.endLevel.update()
 
     if (this.boss.hp > 0 && !this.boss.dying) {
       this.boss.update()

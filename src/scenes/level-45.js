@@ -14,9 +14,9 @@ export class Level45 extends Scene {
 
     this.initMap()
     this.initPlayer()
+    this.triggerSetup()
     this.pathSetup()
     this.enemySetup()
-    this.triggerSetup()
     this.uISetup()
     this.cameraSetup()
 
@@ -167,6 +167,7 @@ export class Level45 extends Scene {
   }
 
   update () {
+    this.endLevel.update()
     if (this.player.hp > 0) {
       this.player.update()
     } else if (this.player.active) {
