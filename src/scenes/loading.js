@@ -28,19 +28,18 @@ export class LoadingScene extends Scene {
       }
     })
     loadingText.setOrigin(0.5, 0.5)
-    var percentText = this.make.text({
-      x: width / 2,
-      y: height / 2 - 5,
-      text: '0%',
-      style: {
-        font: '18px monospace',
-        fill: '#ffffff'
-      }
-    })
-    percentText.setOrigin(0.5, 0.5)
+    // var percentText = this.make.text({
+    //   x: width / 2,
+    //   y: height / 2 - 5,
+    //   text: '0%',
+    //   style: {
+    //     font: '18px monospace',
+    //     fill: '#ffffff'
+    //   }
+    // })
+    // percentText.setOrigin(0.5, 0.5)
 
     this.load.on('progress', function (value) {
-      console.log(percentText)
       // percentText.setText(parseInt(value * 100) + '%')
       progressBar.clear()
       progressBar.fillStyle(0xffffff, 1)
@@ -52,7 +51,7 @@ export class LoadingScene extends Scene {
       progressBar.destroy()
       progressBox.destroy()
       loadingText.destroy()
-      percentText.destroy()
+      // percentText.destroy()
     })
 
     if (this.data.scene === undefined || this.data.scene === 'title') {
