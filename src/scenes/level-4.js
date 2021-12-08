@@ -108,7 +108,7 @@ export class Level4 extends Scene {
   }
 
   triggerSetup () {
-    this.endLevel = new Trigger(this, 4320, 944)
+    this.endLevel = new Trigger(this, 4245, 915)
   }
 
   pathSetup () {
