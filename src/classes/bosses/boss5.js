@@ -112,6 +112,8 @@ export class Boss5 extends Actor {
       this.gun.fireBullet(this.x, this.y, this.flipX, true, false)
       this.getDamage(10)
       bullet.destroy()
+      scene.enemyHealthBar.scaleX = (this.hp / this.maxHealth)
+      scene.enemyHealthBar.x -= (this.hp / this.maxHealth) - 1
       this.scene.sound.stopByKey('stepsAudio')
       this.scene.sound.play('stepsAudio', { volume: 0.08, loop: false })
     })
@@ -120,7 +122,7 @@ export class Boss5 extends Actor {
   update () {
     const dist = Math.Distance.BetweenPointsSquared(this, this.scene.player)
     if (this.active && this.hp > 0) {
-      this.boss2Flip()
+      this.checkFlip()
       if (this.active && this.hp > 60 && dist > 300000) {
         this.anims.play('surf-prue-boss', true)
       } else if (this.active && this.hp < 50 && dist < 120000) {

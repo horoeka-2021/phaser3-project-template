@@ -127,6 +127,8 @@ export class Boss3 extends Actor {
       this.scene.sound.play('enemyDamage', { loop: false })
       this.getDamage(10)
       bullet.destroy()
+      scene.enemyHealthBar.scaleX = (this.hp / this.maxHealth)
+      scene.enemyHealthBar.x -= (this.hp / this.maxHealth) - 1
       this.scene.sound.stopByKey('stepsAudio')
       this.scene.sound.play('stepsAudio', { volume: 0.08, loop: false })
     })
