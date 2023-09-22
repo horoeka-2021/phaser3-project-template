@@ -19,7 +19,7 @@ export class Level1 extends Scene {
     this.triggerSetup()
     this.uISetup()
     this.cameraSetup()
-    this.debugSetup()
+    // this.debugSetup()
 
     this.sound.stopAll()
     this.sound.add('portalAudio')
@@ -242,7 +242,7 @@ export class Level1 extends Scene {
   }
 
   update () {
-    this.debugUpdate()
+    // this.debugUpdate()
 
     this.enemy3.update()
     this.enemy1.update()

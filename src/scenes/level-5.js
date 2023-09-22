@@ -17,7 +17,7 @@ export class Level5 extends Scene {
     this.triggerSetup()
     this.uISetup()
     this.cameraSetup()
-    this.debugSetup()
+    // this.debugSetup()
 
     this.sound.stopAll()
     this.sound.add('portalAudio')
@@ -171,7 +171,7 @@ export class Level5 extends Scene {
   }
 
   update () {
-    this.debugUpdate()
+    // this.debugUpdate()
 
     if (this.player.hp > 0) {
       this.player.update()

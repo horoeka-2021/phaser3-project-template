@@ -19,7 +19,7 @@ export class Level2 extends Scene {
     this.triggerSetup()
     this.uISetup()
     this.cameraSetup()
-    this.debugSetup()
+    // this.debugSetup()
 
     this.sound.stopAll()
     this.sound.add('portalAudio')
@@ -206,7 +206,7 @@ export class Level2 extends Scene {
   }
 
   update () {
-    this.debugUpdate()
+    // this.debugUpdate()
     this.enemy1.update()
 
     if (this.boss.hp > 0) {
